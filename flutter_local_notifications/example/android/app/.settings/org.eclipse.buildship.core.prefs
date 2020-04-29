@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=81a5b1e74e334f078b03441f2fc0ef55bf0087a8
@@ -17,3 +18,7 @@ offline.mode=false
 override.workspace.settings=true
 show.console.view=true
 show.executions.view=true
+=======
+connection.project.dir=..
+eclipse.preferences.version=1
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
