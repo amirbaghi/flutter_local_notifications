@@ -49,6 +49,7 @@ gradle.user.home=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 =======
@@ -59,6 +60,10 @@ gradle.user.home=
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 =======
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+=======
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 java.home=/usr/lib/jvm/java-14-oracle
 =======
 java.home=/usr/lib/jvm/java-1.8.0-openjdk-amd64
@@ -67,6 +72,9 @@ java.home=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 =======
 java.home=/usr/lib/jvm/java-8-openjdk-amd64
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
@@ -77,6 +85,7 @@ java.home=/usr/lib/jvm/java-14-oracle
 >>>>>>> deleted a couple of print statements
 =======
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+<<<<<<< HEAD
 =======
 =======
 java.home=/usr/lib/jvm/java-8-openjdk-amd64
@@ -135,6 +144,8 @@ java.home=/usr/lib/jvm/java-8-openjdk-amd64
 java.home=/usr/lib/jvm/java-14-oracle
 >>>>>>> deleted a couple of print statements
 >>>>>>> deleted a couple of print statements
+=======
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true

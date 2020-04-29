@@ -209,7 +209,13 @@ public class FlutterLocalNotificationsPlugin
                 notification.flags |= additionalFlag;
             }
 
-        return builder.build();
+        Notification notification = builder.build();
+        if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
+            for(int additionalFlag:notificationDetails.additionalFlags) {
+                notification.flags |= additionalFlag;
+            }
+        }
+        return notification;
     }
 
 
