@@ -13,13 +13,19 @@ eclipse.preferences.version=1
 gradle.user.home=
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 java.home=/usr/lib/jvm/java-14-oracle
 =======
 java.home=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+<<<<<<< HEAD
 =======
 java.home=/usr/lib/jvm/java-14-oracle
 >>>>>>> deleted pending intent NEXT
+=======
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true
