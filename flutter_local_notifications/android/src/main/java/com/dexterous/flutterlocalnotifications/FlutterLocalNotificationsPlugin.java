@@ -168,6 +168,22 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         setProgress(notificationDetails, builder);
         setCategory(notificationDetails, builder);
         setTimeoutAfter(notificationDetails, builder);
+
+        // TODO: clean up mock actions
+
+        Intent newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
+        PendingIntent viewIntent = PendingIntent.getActivity(context, 0, newIntent, 0);
+        builder.addAction(android.R.drawable.ic_menu_view,"VIEW", viewIntent);
+
+
+        Intent intent2 = new Intent(context, NotificationReceiver.class);
+        intent2.putExtra("notificationId", notificationDetails.id);
+        intent2.putExtra("action", "DISMISS");
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 0, intent2, 0);
+
+        builder.addAction(android.R.drawable.ic_delete, "DISMISS", pendingIntent2);
+
+
         return builder.build();
     }
 
