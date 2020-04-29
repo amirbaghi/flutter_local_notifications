@@ -31,9 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <service
                 android:name="com.dexterous.flutterlocalnotifications.services.LocalNotificationsService"
                 android:exported="false" />
+=======
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
         <receiver android:name="com.dexterous.flutterlocalnotifications.NotificationReceiver" />
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">

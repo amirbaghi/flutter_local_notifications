@@ -27,6 +27,10 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
         boolean repeat = intent.getBooleanExtra(FlutterLocalNotificationsPlugin.REPEAT, false);
 
 
+<<<<<<< HEAD
+=======
+        System.out.println("ladjflka");
+>>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 
         // TODO: Change this
         int id = intent.getIntExtra("notificationId", 0);
