@@ -53,7 +53,7 @@ class AndroidNotificationDetails {
     this.timeoutAfter,
     this.category,
     this.additionalFlags,
-    this.actions,
+    this.actions
   });
 
   /// The icon that should be used when displaying the notification.
