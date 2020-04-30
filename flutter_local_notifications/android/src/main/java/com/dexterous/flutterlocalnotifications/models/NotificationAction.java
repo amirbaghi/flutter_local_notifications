@@ -56,7 +56,6 @@ public class NotificationAction {
         if (!isEmptyAction() && actionIntent != null) {
             actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
             actionIntent.putExtra(PAYLOAD_KEY, payload);
-
         }
     }
 }
