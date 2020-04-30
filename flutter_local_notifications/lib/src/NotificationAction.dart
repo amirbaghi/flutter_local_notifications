@@ -26,7 +26,6 @@ class NotificationAction {
   Map toMapForPlatformChannel() {
     CallbackHandle handle = PluginUtilities.getCallbackHandle(callback);
     return {
-      // TODO: adflkadslkj
       'callback': PluginUtilities.getCallbackHandle(callback).toRawHandle(),
       // 'callback' : actionText,
       'actionText': actionText,
