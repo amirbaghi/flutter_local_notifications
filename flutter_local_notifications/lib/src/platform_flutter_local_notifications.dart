@@ -82,6 +82,7 @@ class AndroidFlutterLocalNotificationsPlugin
     serializedPlatformSpecifics['allowWhileIdle'] = androidAllowWhileIdle;
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
+<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
@@ -91,6 +92,11 @@ class AndroidFlutterLocalNotificationsPlugin
       for (NotificationAction action in actionsToCheck) {
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
+=======
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -113,6 +119,7 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
+<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
@@ -122,6 +129,11 @@ class AndroidFlutterLocalNotificationsPlugin
       for (NotificationAction action in actionsToCheck) {
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
+=======
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -149,6 +161,7 @@ class AndroidFlutterLocalNotificationsPlugin
       AndroidNotificationDetails notificationDetails,
       {String payload}) async {
     validateId(id);
+<<<<<<< HEAD
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
@@ -160,6 +173,13 @@ class AndroidFlutterLocalNotificationsPlugin
       for (NotificationAction action in actionsToCheck) {
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
+=======
+  _channel.setMethodCallHandler((MethodCall method) {
+      var payload = method.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -182,6 +202,7 @@ class AndroidFlutterLocalNotificationsPlugin
   Future<void> show(int id, String title, String body,
       {AndroidNotificationDetails notificationDetails, String payload}) {
     validateId(id);
+<<<<<<< HEAD
     /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
      option to prevent code duplication */
     _channel.setMethodCallHandler((MethodCall method) {
@@ -196,6 +217,13 @@ class AndroidFlutterLocalNotificationsPlugin
         //TODO: Do this
         // String functionName = NotificationAction.getCallbackNameFromAction(action);
         String functionName = action.actionText;
+=======
+    _channel.setMethodCallHandler((MethodCall method) {
+      var payload = method.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -220,6 +248,7 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
+<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
@@ -229,6 +258,11 @@ class AndroidFlutterLocalNotificationsPlugin
       for (NotificationAction action in actionsToCheck) {
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
+=======
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -267,6 +301,7 @@ class AndroidFlutterLocalNotificationsPlugin
     }
   }
 
+<<<<<<< HEAD
   Future<void> _handleActionMethods(
       MethodCall call, AndroidNotificationDetails notificationDetails) {
     var payload = call.arguments;
@@ -279,6 +314,17 @@ class AndroidFlutterLocalNotificationsPlugin
         return action.callback(payload);
       }
     }
+=======
+  Future<void> _handleActionMethods(MethodCall call, AndroidNotificationDetails notificationDetails){
+    var payload = call.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        if (call.method == functionName) {
+          return action.callback(payload);
+        }
+      }
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
   }
 }
 

@@ -203,7 +203,6 @@ public class FlutterLocalNotificationsPlugin
         setCategory(notificationDetails, builder);
         setTimeoutAfter(notificationDetails, builder);
         addActions(builder, notificationDetails, context);
-
         Notification notification = builder.build();
         if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
             for (int additionalFlag : notificationDetails.additionalFlags) {
@@ -211,6 +210,19 @@ public class FlutterLocalNotificationsPlugin
             }
         }
         return notification;
+
+
+    }
+
+
+    private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings,
+                            Context context) {
+        for (NotificationAction extraAction : settings.actions) {
+            PendingIntent intent = extraAction.getIntent(context);
+            NotificationCompat.Action action = new NotificationCompat.Action
+                    .Builder(0, extraAction.actionText, intent).build();
+            builder.addAction(action);
+        }
     }
 
 
