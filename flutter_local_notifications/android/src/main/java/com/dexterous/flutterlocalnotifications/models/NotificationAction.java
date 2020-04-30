@@ -67,15 +67,20 @@ public class NotificationAction {
 
     public PendingIntent getIntent(Context context) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("get intent");
 =======
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+        System.out.println("get intent");
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         return launchesApp
                 ? getIntentForLaunchesApp(context)
                 : getIntentNotLaunchesApp(context);
     }
 
     private PendingIntent getIntentNotLaunchesApp(Context context) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -90,6 +95,9 @@ public class NotificationAction {
         addActionsToIntent(actionIntent);
         return PendingIntent.getBroadcast(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 =======
+=======
+        System.out.println("Start of not launches app");
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         Intent actionIntent = new Intent(context, LocalNotificationsService.class);
         addActionsToIntent(actionIntent);
         return PendingIntent.getService(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -107,6 +115,7 @@ public class NotificationAction {
 
     private void addActionsToIntent(Intent actionIntent) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("addActionsToIntent");
         if (!isEmptyAction() && actionIntent != null) {
 <<<<<<< HEAD
@@ -123,10 +132,15 @@ public class NotificationAction {
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
 >>>>>>> Integrated the BackgroundManagementPlugin into FlutterLocalNotificationsPlugin and deleted it itself, now headless dart code is executed in the background and working for Android, cleaned up the modules a bit by removing prints and commented out sections, also modified the AndroidManifest.xml and main.dart of example appropriately
 =======
+=======
+        System.out.println("addActionsToIntent");
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         if (!isEmptyAction() && actionIntent != null) {
             actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
             actionIntent.putExtra(PAYLOAD_KEY, payload);
+            System.out.println(CALLBACK_KEY + callbackFunctionName);
+            System.out.println(PAYLOAD_KEY + payload);
         }
     }
 }

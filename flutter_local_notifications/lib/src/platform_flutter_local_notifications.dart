@@ -203,6 +203,7 @@ class AndroidFlutterLocalNotificationsPlugin
       {AndroidNotificationDetails notificationDetails, String payload}) {
     validateId(id);
 <<<<<<< HEAD
+<<<<<<< HEAD
     /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
      option to prevent code duplication */
     _channel.setMethodCallHandler((MethodCall method) {
@@ -218,12 +219,21 @@ class AndroidFlutterLocalNotificationsPlugin
         // String functionName = NotificationAction.getCallbackNameFromAction(action);
         String functionName = action.actionText;
 =======
+=======
+    print(notificationDetails.actions.toString());
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
       List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
+<<<<<<< HEAD
         String functionName = NotificationAction.getCallbackNameFromAction(action);
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+        //TODO: Do this
+        // String functionName = NotificationAction.getCallbackNameFromAction(action);
+        String functionName = action.actionText;
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         if (method.method == functionName) {
           return action.callback(payload);
         }
