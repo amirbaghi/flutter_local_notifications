@@ -10,6 +10,7 @@ import 'platform_specifics/android/initialization_settings.dart';
 import 'platform_specifics/android/notification_details.dart';
 import 'platform_specifics/ios/initialization_settings.dart';
 import 'platform_specifics/ios/notification_details.dart';
+import 'NotificationAction.dart';
 import 'typedefs.dart';
 import 'types.dart';
 
@@ -79,6 +80,16 @@ class AndroidFlutterLocalNotificationsPlugin
     var serializedPlatformSpecifics =
         notificationDetails?.toMap() ?? Map<String, dynamic>();
     serializedPlatformSpecifics['allowWhileIdle'] = androidAllowWhileIdle;
+    _channel.setMethodCallHandler((MethodCall method) {
+      var payload = method.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        if (method.method == functionName) {
+          return action.callback(payload);
+        }
+      }
+    });
     await _channel.invokeMethod('schedule', <String, dynamic>{
       'id': id,
       'title': title,
@@ -94,6 +105,16 @@ class AndroidFlutterLocalNotificationsPlugin
       Time notificationTime, AndroidNotificationDetails notificationDetails,
       {String payload}) async {
     validateId(id);
+    _channel.setMethodCallHandler((MethodCall method) {
+      var payload = method.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        if (method.method == functionName) {
+          return action.callback(payload);
+        }
+      }
+    });
     await _channel.invokeMethod('showDailyAtTime', <String, dynamic>{
       'id': id,
       'title': title,
@@ -116,7 +137,16 @@ class AndroidFlutterLocalNotificationsPlugin
       AndroidNotificationDetails notificationDetails,
       {String payload}) async {
     validateId(id);
-
+  _channel.setMethodCallHandler((MethodCall method) {
+      var payload = method.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        if (method.method == functionName) {
+          return action.callback(payload);
+        }
+      }
+    });
     await _channel.invokeMethod('showWeeklyAtDayAndTime', <String, dynamic>{
       'id': id,
       'title': title,
@@ -134,6 +164,16 @@ class AndroidFlutterLocalNotificationsPlugin
   Future<void> show(int id, String title, String body,
       {AndroidNotificationDetails notificationDetails, String payload}) {
     validateId(id);
+    _channel.setMethodCallHandler((MethodCall method) {
+      var payload = method.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        if (method.method == functionName) {
+          return action.callback(payload);
+        }
+      }
+    });
     return _channel.invokeMethod(
       'show',
       <String, dynamic>{
@@ -151,6 +191,16 @@ class AndroidFlutterLocalNotificationsPlugin
       int id, String title, String body, RepeatInterval repeatInterval,
       {AndroidNotificationDetails notificationDetails, String payload}) async {
     validateId(id);
+    _channel.setMethodCallHandler((MethodCall method) {
+      var payload = method.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        if (method.method == functionName) {
+          return action.callback(payload);
+        }
+      }
+    });
     await _channel.invokeMethod('periodicallyShow', <String, dynamic>{
       'id': id,
       'title': title,
@@ -182,6 +232,17 @@ class AndroidFlutterLocalNotificationsPlugin
       default:
         return Future.error('method not defined');
     }
+  }
+
+  Future<void> _handleActionMethods(MethodCall call, AndroidNotificationDetails notificationDetails){
+    var payload = call.arguments;
+      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      for (NotificationAction action in actionsToCheck) {
+        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        if (call.method == functionName) {
+          return action.callback(payload);
+        }
+      }
   }
 }
 

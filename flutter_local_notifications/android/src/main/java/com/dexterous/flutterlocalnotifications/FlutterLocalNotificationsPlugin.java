@@ -32,6 +32,7 @@ import com.dexterous.flutterlocalnotifications.models.NotificationChannelAction;
 import com.dexterous.flutterlocalnotifications.models.NotificationChannelDetails;
 import com.dexterous.flutterlocalnotifications.models.NotificationDetails;
 import com.dexterous.flutterlocalnotifications.models.PersonDetails;
+import com.dexterous.flutterlocalnotifications.models.NotificationAction;
 import com.dexterous.flutterlocalnotifications.models.styles.BigPictureStyleInformation;
 import com.dexterous.flutterlocalnotifications.models.styles.BigTextStyleInformation;
 import com.dexterous.flutterlocalnotifications.models.styles.DefaultStyleInformation;
@@ -40,6 +41,7 @@ import com.dexterous.flutterlocalnotifications.models.styles.MessagingStyleInfor
 import com.dexterous.flutterlocalnotifications.models.styles.StyleInformation;
 import com.dexterous.flutterlocalnotifications.utils.BooleanUtils;
 import com.dexterous.flutterlocalnotifications.utils.StringUtils;
+import com.dexterous.flutterlocalnotifications.services.LocalNotificationsService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -168,13 +170,21 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         setProgress(notificationDetails, builder);
         setCategory(notificationDetails, builder);
         setTimeoutAfter(notificationDetails, builder);
-        Notification notification = builder.build();
-        if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
-            for(int additionalFlag:notificationDetails.additionalFlags) {
-                notification.flags |= additionalFlag;
-            }
+        addActions(builder, notificationDetails, context);
+
+
+        return builder.build();
+    }
+
+
+    private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings,
+                            Context context) {
+        for (NotificationAction extraAction : settings.actions) {
+            PendingIntent intent = extraAction.getIntent(context);
+            NotificationCompat.Action action = new NotificationCompat.Action
+                    .Builder(0, extraAction.actionText, intent).build();
+            builder.addAction(action);
         }
-        return notification;
     }
 
     private static void setSmallIcon(Context context, NotificationDetails notificationDetails, NotificationCompat.Builder builder) {
@@ -702,6 +712,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         this.applicationContext = context;
         this.channel = new MethodChannel(binaryMessenger, METHOD_CHANNEL);
         this.channel.setMethodCallHandler(this);
+        LocalNotificationsService.setSharedChannel(this.channel);
     }
 
     @Override
