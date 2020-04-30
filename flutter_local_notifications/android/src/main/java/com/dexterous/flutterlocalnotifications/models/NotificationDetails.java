@@ -108,8 +108,6 @@ public class NotificationDetails {
     private static final String SHOW_WHEN = "showWhen";
     private static final String WHEN = "when";
 
-
-
     public Integer id;
     public String title;
     public String body;
@@ -160,9 +158,9 @@ public class NotificationDetails {
     public Long when;
     public List<NotificationAction> actions;
 
-
-
-    // Note: this is set on the Android to save details about the icon that should be used when re-hydrating scheduled notifications when a device has been restarted.
+    // Note: this is set on the Android to save details about the icon that should
+    // be used when re-hydrating scheduled notifications when a device has been
+    // restarted.
     public Integer iconResourceId;
 
     public static NotificationDetails from(Map<String, Object> arguments) {
@@ -171,13 +169,6 @@ public class NotificationDetails {
         notificationDetails.id = (Integer) arguments.get(ID);
         notificationDetails.title = (String) arguments.get(TITLE);
         notificationDetails.body = (String) arguments.get(BODY);
-        @SuppressWarnings("unchecked")
-        List<Map<String, Object>> actionMaps = (List<Map<String, Object>>)arguments.get(ACTIONS);
-        notificationDetails.actions = new ArrayList<NotificationAction>();
-        for (Map<String, Object> actionMap : actionMaps){
-            NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"), (String) actionMap.get("actionText"), (String) actionMap.get("payload"), ((Boolean) actionMap.get("launchesApp")).booleanValue());
-            notificationDetails.actions.add(newAction);
-        }
 
         if (arguments.containsKey(MILLISECONDS_SINCE_EPOCH)) {
             notificationDetails.millisecondsSinceEpoch = (Long) arguments.get(MILLISECONDS_SINCE_EPOCH);
@@ -204,6 +195,16 @@ public class NotificationDetails {
         @SuppressWarnings("unchecked")
         Map<String, Object> platformChannelSpecifics = (Map<String, Object>) arguments.get(PLATFORM_SPECIFICS);
         if (platformChannelSpecifics != null) {
+            @SuppressWarnings("unchecked")
+            ArrayList<Map<String, Object>> actionMaps = (ArrayList<Map<String, Object>>) platformChannelSpecifics.get(ACTIONS);
+            notificationDetails.actions = new ArrayList<NotificationAction>();
+            for (Map<String, Object> actionMap : actionMaps) {
+                System.out.println(actionMap.toString());
+                NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"),
+                        (String) actionMap.get("actionText"), (String) actionMap.get("payload"),
+                        ((Boolean) actionMap.get("launchesApp")).booleanValue());
+                notificationDetails.actions.add(newAction);
+            }
             notificationDetails.autoCancel = (Boolean) platformChannelSpecifics.get(AUTO_CANCEL);
             notificationDetails.ongoing = (Boolean) platformChannelSpecifics.get(ONGOING);
             notificationDetails.style = NotificationStyle.values()[(Integer) platformChannelSpecifics.get(STYLE)];
@@ -240,7 +241,8 @@ public class NotificationDetails {
         return null;
     }
 
-    private static void readProgressInformation(NotificationDetails notificationDetails, Map<String, Object> platformChannelSpecifics) {
+    private static void readProgressInformation(NotificationDetails notificationDetails,
+            Map<String, Object> platformChannelSpecifics) {
         notificationDetails.showProgress = (Boolean) platformChannelSpecifics.get(SHOW_PROGRESS);
         if (platformChannelSpecifics.containsKey(MAX_PROGRESS)) {
             notificationDetails.maxProgress = (Integer) platformChannelSpecifics.get(MAX_PROGRESS);
@@ -255,7 +257,8 @@ public class NotificationDetails {
         }
     }
 
-    private static void readLargeIconInformation(NotificationDetails notificationDetails, Map<String, Object> platformChannelSpecifics) {
+    private static void readLargeIconInformation(NotificationDetails notificationDetails,
+            Map<String, Object> platformChannelSpecifics) {
         notificationDetails.largeIcon = (String) platformChannelSpecifics.get(LARGE_ICON);
         if (platformChannelSpecifics.containsKey(LARGE_ICON_BITMAP_SOURCE)) {
             Integer argumentValue = (Integer) platformChannelSpecifics.get(LARGE_ICON_BITMAP_SOURCE);
@@ -265,22 +268,25 @@ public class NotificationDetails {
         }
     }
 
-    private static void readGroupingInformation(NotificationDetails notificationDetails, Map<String, Object> platformChannelSpecifics) {
+    private static void readGroupingInformation(NotificationDetails notificationDetails,
+            Map<String, Object> platformChannelSpecifics) {
         notificationDetails.groupKey = (String) platformChannelSpecifics.get(GROUP_KEY);
         notificationDetails.setAsGroupSummary = (Boolean) platformChannelSpecifics.get(SET_AS_GROUP_SUMMARY);
         notificationDetails.groupAlertBehavior = (Integer) platformChannelSpecifics.get(GROUP_ALERT_BEHAVIOR);
     }
 
-    private static void readSoundInformation(NotificationDetails notificationDetails, Map<String, Object> platformChannelSpecifics) {
+    private static void readSoundInformation(NotificationDetails notificationDetails,
+            Map<String, Object> platformChannelSpecifics) {
         notificationDetails.playSound = (Boolean) platformChannelSpecifics.get(PLAY_SOUND);
         notificationDetails.sound = (String) platformChannelSpecifics.get(SOUND);
-        Integer soundSourceIndex = (Integer)platformChannelSpecifics.get(SOUND_SOURCE);
-        if(soundSourceIndex != null) {
+        Integer soundSourceIndex = (Integer) platformChannelSpecifics.get(SOUND_SOURCE);
+        if (soundSourceIndex != null) {
             notificationDetails.soundSource = SoundSource.values()[soundSourceIndex];
         }
     }
 
-    private static void readColor(NotificationDetails notificationDetails, Map<String, Object> platformChannelSpecifics) {
+    private static void readColor(NotificationDetails notificationDetails,
+            Map<String, Object> platformChannelSpecifics) {
         Integer a = (Integer) platformChannelSpecifics.get(COLOR_ALPHA);
         Integer r = (Integer) platformChannelSpecifics.get(COLOR_RED);
         Integer g = (Integer) platformChannelSpecifics.get(COLOR_GREEN);
@@ -290,7 +296,8 @@ public class NotificationDetails {
         }
     }
 
-    private static void readLedInformation(NotificationDetails notificationDetails, Map<String, Object> platformChannelSpecifics) {
+    private static void readLedInformation(NotificationDetails notificationDetails,
+            Map<String, Object> platformChannelSpecifics) {
         Integer a = (Integer) platformChannelSpecifics.get(LED_COLOR_ALPHA);
         Integer r = (Integer) platformChannelSpecifics.get(LED_COLOR_RED);
         Integer g = (Integer) platformChannelSpecifics.get(LED_COLOR_GREEN);
@@ -303,19 +310,22 @@ public class NotificationDetails {
         notificationDetails.ledOffMs = (Integer) platformChannelSpecifics.get(LED_OFF_MS);
     }
 
-    private static void readChannelInformation(NotificationDetails notificationDetails, Map<String, Object> platformChannelSpecifics) {
+    private static void readChannelInformation(NotificationDetails notificationDetails,
+            Map<String, Object> platformChannelSpecifics) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationDetails.channelId = (String) platformChannelSpecifics.get(CHANNEL_ID);
             notificationDetails.channelName = (String) platformChannelSpecifics.get(CHANNEL_NAME);
             notificationDetails.channelDescription = (String) platformChannelSpecifics.get(CHANNEL_DESCRIPTION);
             notificationDetails.importance = (Integer) platformChannelSpecifics.get(IMPORTANCE);
             notificationDetails.channelShowBadge = (Boolean) platformChannelSpecifics.get(CHANNEL_SHOW_BADGE);
-            notificationDetails.channelAction = NotificationChannelAction.values()[(Integer) platformChannelSpecifics.get(CHANNEL_ACTION)];
+            notificationDetails.channelAction = NotificationChannelAction
+                    .values()[(Integer) platformChannelSpecifics.get(CHANNEL_ACTION)];
         }
     }
 
     @SuppressWarnings("unchecked")
-    private static void readStyleInformation(NotificationDetails notificationDetails, Map<String, Object> platformSpecifics) {
+    private static void readStyleInformation(NotificationDetails notificationDetails,
+            Map<String, Object> platformSpecifics) {
         Map<String, Object> styleInformation = (Map<String, Object>) platformSpecifics.get(STYLE_INFORMATION);
         DefaultStyleInformation defaultStyleInformation = getDefaultStyleInformation(styleInformation);
         if (notificationDetails.style == NotificationStyle.Default) {
@@ -334,12 +344,16 @@ public class NotificationDetails {
     }
 
     @SuppressWarnings("unchecked")
-    private static void readMessagingStyleInformation(NotificationDetails notificationDetails, Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
+    private static void readMessagingStyleInformation(NotificationDetails notificationDetails,
+            Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
         String conversationTitle = (String) styleInformation.get(CONVERSATION_TITLE);
         Boolean groupConversation = (Boolean) styleInformation.get(GROUP_CONVERSATION);
         PersonDetails person = readPersonDetails((Map<String, Object>) styleInformation.get(PERSON));
-        ArrayList<MessageDetails> messages = readMessages((ArrayList<Map<String, Object>>) styleInformation.get(MESSAGES));
-        notificationDetails.styleInformation = new MessagingStyleInformation(person, conversationTitle, groupConversation, messages, defaultStyleInformation.htmlFormatTitle, defaultStyleInformation.htmlFormatBody);
+        ArrayList<MessageDetails> messages = readMessages(
+                (ArrayList<Map<String, Object>>) styleInformation.get(MESSAGES));
+        notificationDetails.styleInformation = new MessagingStyleInformation(person, conversationTitle,
+                groupConversation, messages, defaultStyleInformation.htmlFormatTitle,
+                defaultStyleInformation.htmlFormatBody);
     }
 
     private static PersonDetails readPersonDetails(Map<String, Object> person) {
@@ -362,13 +376,16 @@ public class NotificationDetails {
         ArrayList<MessageDetails> result = new ArrayList<>();
         if (messages != null) {
             for (Map<String, Object> messageData : messages) {
-                result.add(new MessageDetails((String) messageData.get(TEXT), (Long) messageData.get(TIMESTAMP), readPersonDetails((Map<String, Object>) messageData.get(PERSON)), (String) messageData.get(DATA_MIME_TYPE), (String) messageData.get(DATA_URI)));
+                result.add(new MessageDetails((String) messageData.get(TEXT), (Long) messageData.get(TIMESTAMP),
+                        readPersonDetails((Map<String, Object>) messageData.get(PERSON)),
+                        (String) messageData.get(DATA_MIME_TYPE), (String) messageData.get(DATA_URI)));
             }
         }
         return result;
     }
 
-    private static void readInboxStyleInformation(NotificationDetails notificationDetails, Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
+    private static void readInboxStyleInformation(NotificationDetails notificationDetails,
+            Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
         String contentTitle = (String) styleInformation.get(CONTENT_TITLE);
         Boolean htmlFormatContentTitle = (Boolean) styleInformation.get(HTML_FORMAT_CONTENT_TITLE);
         String summaryText = (String) styleInformation.get(SUMMARY_TEXT);
@@ -376,20 +393,26 @@ public class NotificationDetails {
         @SuppressWarnings("unchecked")
         ArrayList<String> lines = (ArrayList<String>) styleInformation.get(LINES);
         Boolean htmlFormatLines = (Boolean) styleInformation.get(HTML_FORMAT_LINES);
-        notificationDetails.styleInformation = new InboxStyleInformation(defaultStyleInformation.htmlFormatTitle, defaultStyleInformation.htmlFormatBody, contentTitle, htmlFormatContentTitle, summaryText, htmlFormatSummaryText, lines, htmlFormatLines);
+        notificationDetails.styleInformation = new InboxStyleInformation(defaultStyleInformation.htmlFormatTitle,
+                defaultStyleInformation.htmlFormatBody, contentTitle, htmlFormatContentTitle, summaryText,
+                htmlFormatSummaryText, lines, htmlFormatLines);
     }
 
-    private static void readBigTextStyleInformation(NotificationDetails notificationDetails, Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
+    private static void readBigTextStyleInformation(NotificationDetails notificationDetails,
+            Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
         String bigText = (String) styleInformation.get(BIG_TEXT);
         Boolean htmlFormatBigText = (Boolean) styleInformation.get(HTML_FORMAT_BIG_TEXT);
         String contentTitle = (String) styleInformation.get(CONTENT_TITLE);
         Boolean htmlFormatContentTitle = (Boolean) styleInformation.get(HTML_FORMAT_CONTENT_TITLE);
         String summaryText = (String) styleInformation.get(SUMMARY_TEXT);
         Boolean htmlFormatSummaryText = (Boolean) styleInformation.get(HTML_FORMAT_SUMMARY_TEXT);
-        notificationDetails.styleInformation = new BigTextStyleInformation(defaultStyleInformation.htmlFormatTitle, defaultStyleInformation.htmlFormatBody, bigText, htmlFormatBigText, contentTitle, htmlFormatContentTitle, summaryText, htmlFormatSummaryText);
+        notificationDetails.styleInformation = new BigTextStyleInformation(defaultStyleInformation.htmlFormatTitle,
+                defaultStyleInformation.htmlFormatBody, bigText, htmlFormatBigText, contentTitle,
+                htmlFormatContentTitle, summaryText, htmlFormatSummaryText);
     }
 
-    private static void readBigPictureStyleInformation(NotificationDetails notificationDetails, Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
+    private static void readBigPictureStyleInformation(NotificationDetails notificationDetails,
+            Map<String, Object> styleInformation, DefaultStyleInformation defaultStyleInformation) {
         String contentTitle = (String) styleInformation.get(CONTENT_TITLE);
         Boolean htmlFormatContentTitle = (Boolean) styleInformation.get(HTML_FORMAT_CONTENT_TITLE);
         String summaryText = (String) styleInformation.get(SUMMARY_TEXT);
@@ -404,7 +427,10 @@ public class NotificationDetails {
         Integer bigPictureBitmapSourceArgument = (Integer) styleInformation.get(BIG_PICTURE_BITMAP_SOURCE);
         BitmapSource bigPictureBitmapSource = BitmapSource.values()[bigPictureBitmapSourceArgument];
         Boolean showThumbnail = (Boolean) styleInformation.get(HIDE_EXPANDED_LARGE_ICON);
-        notificationDetails.styleInformation = new BigPictureStyleInformation(defaultStyleInformation.htmlFormatTitle, defaultStyleInformation.htmlFormatBody, contentTitle, htmlFormatContentTitle, summaryText, htmlFormatSummaryText, largeIcon, largeIconBitmapSource, bigPicture, bigPictureBitmapSource, showThumbnail);
+        notificationDetails.styleInformation = new BigPictureStyleInformation(defaultStyleInformation.htmlFormatTitle,
+                defaultStyleInformation.htmlFormatBody, contentTitle, htmlFormatContentTitle, summaryText,
+                htmlFormatSummaryText, largeIcon, largeIconBitmapSource, bigPicture, bigPictureBitmapSource,
+                showThumbnail);
     }
 
     private static DefaultStyleInformation getDefaultStyleInformation(Map<String, Object> styleInformation) {
