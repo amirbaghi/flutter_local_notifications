@@ -148,7 +148,6 @@ public class NotificationAction {
             actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
             actionIntent.putExtra(PAYLOAD_KEY, payload);
-
         }
     }
 }
