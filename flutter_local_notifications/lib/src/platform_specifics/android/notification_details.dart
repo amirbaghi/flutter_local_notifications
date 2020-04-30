@@ -54,7 +54,6 @@ class AndroidNotificationDetails {
     this.category,
     this.actions,
     this.additionalFlags,
-    this.actions,
   });
 
   /// The icon that should be used when displaying the notification.
