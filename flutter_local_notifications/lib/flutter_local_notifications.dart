@@ -27,6 +27,7 @@ export 'src/platform_specifics/ios/notification_attachment.dart';
 export 'src/notification_details.dart';
 export 'src/initialization_settings.dart';
 export 'src/flutter_local_notifications_plugin.dart';
+export 'src/NotificationAction.dart';
 export 'src/platform_flutter_local_notifications.dart'
     hide MethodChannelFlutterLocalNotificationsPlugin;
 export 'src/types.dart';

@@ -877,6 +877,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
     /// Extracts the details of the notifications passed from the Flutter side and also validates that some of the details (especially resources) passed are valid
     private NotificationDetails extractNotificationDetails(Result result, Map<String, Object> arguments) {
         NotificationDetails notificationDetails = NotificationDetails.from(arguments);
+        System.out.println("extract");
         if (hasInvalidIcon(result, notificationDetails.icon) ||
                 hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource) ||
                 hasInvalidBigPictureResources(result, notificationDetails) ||

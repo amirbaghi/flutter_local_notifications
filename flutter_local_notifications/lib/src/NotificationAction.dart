@@ -23,7 +23,9 @@ class NotificationAction {
 
   Map toMapForPlatformChannel() {
     return {
-      'callback': getCallbackNameFromAction(this),
+      // TODO: adflkadslkj
+      // 'callback': getCallbackNameFromAction(this),
+      'callback' : actionText,
       'actionText': actionText,
       'payload': payload,
       'launchesApp': launchesApp,
