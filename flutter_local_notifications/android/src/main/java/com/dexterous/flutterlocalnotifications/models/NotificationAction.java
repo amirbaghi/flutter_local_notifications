@@ -99,6 +99,7 @@ public class NotificationAction {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("get intent");
 =======
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
@@ -117,6 +118,9 @@ public class NotificationAction {
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
 =======
 >>>>>>> added some print statements
+=======
+        System.out.println("get intent");
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         return launchesApp
                 ? getIntentForLaunchesApp(context)
                 : getIntentNotLaunchesApp(context);
@@ -177,6 +181,7 @@ public class NotificationAction {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("addActionsToIntent");
         if (!isEmptyAction() && actionIntent != null) {
 <<<<<<< HEAD
@@ -203,6 +208,9 @@ public class NotificationAction {
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
 =======
 >>>>>>> added some print statements
+=======
+        System.out.println("addActionsToIntent");
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         if (!isEmptyAction() && actionIntent != null) {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -219,6 +227,8 @@ public class NotificationAction {
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
 >>>>>>> Integrated the BackgroundManagementPlugin into FlutterLocalNotificationsPlugin and deleted it itself, now headless dart code is executed in the background and working for Android, cleaned up the modules a bit by removing prints and commented out sections, also modified the AndroidManifest.xml and main.dart of example appropriately
             actionIntent.putExtra(PAYLOAD_KEY, payload);
+            System.out.println(CALLBACK_KEY + callbackFunctionName);
+            System.out.println(PAYLOAD_KEY + payload);
         }
     }
 }
