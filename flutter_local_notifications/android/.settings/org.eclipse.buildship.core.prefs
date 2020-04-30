@@ -49,6 +49,7 @@ connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 connection.project.dir=../example/android/app
 =======
 connection.project.dir=../example/android
@@ -73,6 +74,9 @@ gradle.user.home=
 java.home=/usr/lib/jvm/java-14-oracle
 =======
 connection.project.dir=
+=======
+connection.project.dir=../example/android
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
 =======
 connection.project.dir=../example/android
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods

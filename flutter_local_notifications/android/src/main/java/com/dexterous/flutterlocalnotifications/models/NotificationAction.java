@@ -96,6 +96,7 @@ public class NotificationAction {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("get intent");
 =======
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
@@ -107,6 +108,8 @@ public class NotificationAction {
 =======
         System.out.println("get intent");
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
+=======
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
         return launchesApp
                 ? getIntentForLaunchesApp(context)
                 : getIntentNotLaunchesApp(context);
