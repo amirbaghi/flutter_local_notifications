@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:flutter_local_notifications/src/NotificationAction.dart';
+
 import 'bitmap.dart';
 import 'enums.dart';
 import 'notification_sound.dart';
@@ -50,6 +52,7 @@ class AndroidNotificationDetails {
     this.visibility,
     this.timeoutAfter,
     this.category,
+    this.actions,
   });
 
   /// The icon that should be used when displaying the notification.
@@ -202,6 +205,11 @@ class AndroidNotificationDetails {
   /// Refer to Android notification API documentation at https://developer.android.com/reference/androidx/core/app/NotificationCompat.html#constants_2 for the available categories
   final String category;
 
+
+  /// A [List] of [NotificationAction] objects.
+  final List<NotificationAction> actions;
+
+
   /// Creates a [Map] object that describes the [AndroidNotificationDetails] object.
   ///
   /// Mainly for internal use to send the data over a platform channel.
@@ -248,7 +256,8 @@ class AndroidNotificationDetails {
     }
       ..addAll(_convertStyleInformationToMap())
       ..addAll(_convertSoundToMap())
-      ..addAll(_convertLargeIconToMap());
+      ..addAll(_convertLargeIconToMap())
+      ..addAll(_convertNotificationActionsToMap());
   }
 
   Map<String, dynamic> _convertStyleInformationToMap() {
@@ -320,5 +329,12 @@ class AndroidNotificationDetails {
     } else {
       return <String, dynamic>{};
     }
+  }
+
+
+  // TODO: Check method
+  Map<String, dynamic> _convertNotificationActionsToMap()  {
+    List actionMaps = actions.map((a) => a.toMapForPlatformChannel()).toList();
+    return <String, dynamic>{'actions' : actionMaps };
   }
 }

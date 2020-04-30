@@ -32,6 +32,7 @@ import com.dexterous.flutterlocalnotifications.models.NotificationChannelAction;
 import com.dexterous.flutterlocalnotifications.models.NotificationChannelDetails;
 import com.dexterous.flutterlocalnotifications.models.NotificationDetails;
 import com.dexterous.flutterlocalnotifications.models.PersonDetails;
+import com.dexterous.flutterlocalnotifications.models.NotificationAction;
 import com.dexterous.flutterlocalnotifications.models.styles.BigPictureStyleInformation;
 import com.dexterous.flutterlocalnotifications.models.styles.BigTextStyleInformation;
 import com.dexterous.flutterlocalnotifications.models.styles.DefaultStyleInformation;
@@ -40,6 +41,7 @@ import com.dexterous.flutterlocalnotifications.models.styles.MessagingStyleInfor
 import com.dexterous.flutterlocalnotifications.models.styles.StyleInformation;
 import com.dexterous.flutterlocalnotifications.utils.BooleanUtils;
 import com.dexterous.flutterlocalnotifications.utils.StringUtils;
+import com.dexterous.flutterlocalnotifications.services.LocalNotificationsService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -168,23 +170,21 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         setProgress(notificationDetails, builder);
         setCategory(notificationDetails, builder);
         setTimeoutAfter(notificationDetails, builder);
-
-        // TODO: clean up mock actions
-
-        Intent newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
-        PendingIntent viewIntent = PendingIntent.getActivity(context, 0, newIntent, 0);
-        builder.addAction(android.R.drawable.ic_menu_view,"VIEW", viewIntent);
-
-
-        Intent intent2 = new Intent(context, NotificationReceiver.class);
-        intent2.putExtra("notificationId", notificationDetails.id);
-        intent2.putExtra("action", "DISMISS");
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 0, intent2, 0);
-
-        builder.addAction(android.R.drawable.ic_delete, "DISMISS", pendingIntent2);
+        addActions(builder, notificationDetails, context);
 
 
         return builder.build();
+    }
+
+
+    private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings,
+                            Context context) {
+        for (NotificationAction extraAction : settings.actions) {
+            PendingIntent intent = extraAction.getIntent(context);
+            NotificationCompat.Action action = new NotificationCompat.Action
+                    .Builder(0, extraAction.actionText, intent).build();
+            builder.addAction(action);
+        }
     }
 
     private static void setSmallIcon(Context context, NotificationDetails notificationDetails, NotificationCompat.Builder builder) {
@@ -712,6 +712,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         this.applicationContext = context;
         this.channel = new MethodChannel(binaryMessenger, METHOD_CHANNEL);
         this.channel.setMethodCallHandler(this);
+        LocalNotificationsService.setSharedChannel(this.channel);
     }
 
     @Override
