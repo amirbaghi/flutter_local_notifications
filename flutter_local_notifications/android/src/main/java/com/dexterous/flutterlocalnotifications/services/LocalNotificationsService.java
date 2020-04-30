@@ -40,6 +40,7 @@ public class LocalNotificationsService extends IntentService {
     }
 
     public static boolean handleIntent(Intent intent) {
+
         if (intent == null) {
             return false;
         }
@@ -51,6 +52,7 @@ public class LocalNotificationsService extends IntentService {
         String callbackName = intent.getStringExtra(NotificationAction.CALLBACK_KEY);
         String payload = intent.getStringExtra(NotificationAction.PAYLOAD_KEY);
 
+        System.out.println(callbackName);
         if (isNullOrEmpty(callbackName)) {
             return false;
         }
