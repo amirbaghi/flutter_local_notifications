@@ -164,11 +164,14 @@ class AndroidFlutterLocalNotificationsPlugin
   Future<void> show(int id, String title, String body,
       {AndroidNotificationDetails notificationDetails, String payload}) {
     validateId(id);
+    print(notificationDetails.actions.toString());
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
       List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        //TODO: Do this
+        // String functionName = NotificationAction.getCallbackNameFromAction(action);
+        String functionName = action.actionText;
         if (method.method == functionName) {
           return action.callback(payload);
         }
