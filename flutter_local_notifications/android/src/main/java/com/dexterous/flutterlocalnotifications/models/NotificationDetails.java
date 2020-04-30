@@ -171,6 +171,16 @@ public class NotificationDetails {
         notificationDetails.id = (Integer) arguments.get(ID);
         notificationDetails.title = (String) arguments.get(TITLE);
         notificationDetails.body = (String) arguments.get(BODY);
+<<<<<<< HEAD
+=======
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> actionMaps = (List<Map<String, Object>>)arguments.get(ACTIONS);
+        notificationDetails.actions = new ArrayList<NotificationAction>();
+        for (Map<String, Object> actionMap : actionMaps){
+            NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"), (String) actionMap.get("actionText"), (String) actionMap.get("payload"), ((Boolean) actionMap.get("launchesApp")).booleanValue());
+            notificationDetails.actions.add(newAction);
+        }
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
 
         if (arguments.containsKey(MILLISECONDS_SINCE_EPOCH)) {
             notificationDetails.millisecondsSinceEpoch = (Long) arguments.get(MILLISECONDS_SINCE_EPOCH);

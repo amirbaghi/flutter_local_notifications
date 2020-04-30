@@ -204,14 +204,11 @@ public class FlutterLocalNotificationsPlugin
         setTimeoutAfter(notificationDetails, builder);
         addActions(builder, notificationDetails, context);
 
-        Notification notification = builder.build();
-        if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
-            for (int additionalFlag : notificationDetails.additionalFlags) {
-                notification.flags |= additionalFlag;
-            }
-        }
-        return notification;
+
+        return builder.build();
     }
+
+
 
     private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings, Context context) {
         for (NotificationAction extraAction : settings.actions) {
