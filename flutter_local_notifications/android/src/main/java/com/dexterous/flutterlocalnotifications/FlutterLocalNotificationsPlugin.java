@@ -179,6 +179,7 @@ public class FlutterLocalNotificationsPlugin
 <<<<<<< HEAD
         addActions(builder, notificationDetails, context);
 
+<<<<<<< HEAD
 
         return builder.build();
 =======
@@ -204,6 +205,12 @@ public class FlutterLocalNotificationsPlugin
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
 
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+=======
+        Intent newIntent = new Intent(context, LocalNotificationsService.class);
+        PendingIntent newPIntent = PendingIntent.getService(context, 0, newIntent, 0);
+        builder.addAction(0, "NEXT", newPIntent);
+
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         Notification notification = builder.build();
         if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
             for (int additionalFlag : notificationDetails.additionalFlags) {
@@ -970,6 +977,7 @@ public class FlutterLocalNotificationsPlugin
     /// valid
     private NotificationDetails extractNotificationDetails(Result result, Map<String, Object> arguments) {
         NotificationDetails notificationDetails = NotificationDetails.from(arguments);
+        System.out.println("extract");
         if (hasInvalidIcon(result, notificationDetails.icon)
                 || hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource)
                 || hasInvalidBigPictureResources(result, notificationDetails)

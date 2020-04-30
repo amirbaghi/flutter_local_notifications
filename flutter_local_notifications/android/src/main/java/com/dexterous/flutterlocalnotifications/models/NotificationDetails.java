@@ -171,13 +171,6 @@ public class NotificationDetails {
         notificationDetails.id = (Integer) arguments.get(ID);
         notificationDetails.title = (String) arguments.get(TITLE);
         notificationDetails.body = (String) arguments.get(BODY);
-        @SuppressWarnings("unchecked")
-        List<Map<String, Object>> actionMaps = (List<Map<String, Object>>)arguments.get(ACTIONS);
-        notificationDetails.actions = new ArrayList<NotificationAction>();
-        for (Map<String, Object> actionMap : actionMaps){
-            NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"), (String) actionMap.get("actionText"), (String) actionMap.get("payload"), ((Boolean) actionMap.get("launchesApp")).booleanValue());
-            notificationDetails.actions.add(newAction);
-        }
 
         if (arguments.containsKey(MILLISECONDS_SINCE_EPOCH)) {
             notificationDetails.millisecondsSinceEpoch = (Long) arguments.get(MILLISECONDS_SINCE_EPOCH);
@@ -208,6 +201,10 @@ public class NotificationDetails {
             ArrayList<Map<String, Object>> actionMaps = (ArrayList<Map<String, Object>>) platformChannelSpecifics.get(ACTIONS);
             notificationDetails.actions = new ArrayList<NotificationAction>();
             for (Map<String, Object> actionMap : actionMaps) {
+<<<<<<< HEAD
+=======
+                System.out.println(actionMap.toString());
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
                 NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"),
                         (String) actionMap.get("actionText"), (String) actionMap.get("payload"),
                         ((Boolean) actionMap.get("launchesApp")).booleanValue());
