@@ -54,6 +54,7 @@ class AndroidNotificationDetails {
     this.category,
     this.actions,
     this.additionalFlags,
+    this.actions,
   });
 
   /// The icon that should be used when displaying the notification.
@@ -216,6 +217,10 @@ class AndroidNotificationDetails {
   /// For a list of a values, refer to the documented constants prefixed with "FLAG_" (without the quotes) at https://developer.android.com/reference/android/app/Notification.html#constants_1.
   /// For example, use a value of 4 to allow the audio to repeat as documented at https://developer.android.com/reference/android/app/Notification.html#FLAG_INSISTEN
   final Int32List additionalFlags;
+
+  /// A [List] of [NotificationAction] objects.
+  final List<NotificationAction> actions;
+
 
   /// Creates a [Map] object that describes the [AndroidNotificationDetails] object.
   ///
