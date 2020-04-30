@@ -209,9 +209,10 @@ public class FlutterLocalNotificationsPlugin
             for (int additionalFlag : notificationDetails.additionalFlags) {
                 notification.flags |= additionalFlag;
             }
-        }
-        return notification;
+
+        return builder.build();
     }
+
 
     private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings, Context context) {
         for (NotificationAction extraAction : settings.actions) {

@@ -38,7 +38,6 @@ public class NotificationAction {
     }
 
     public PendingIntent getIntent(Context context) {
-        System.out.println("get intent");
         return launchesApp
                 ? getIntentForLaunchesApp(context)
                 : getIntentNotLaunchesApp(context);
