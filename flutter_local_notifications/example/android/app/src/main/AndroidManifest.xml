@@ -31,6 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service
+                android:name="com.dexterous.flutterlocalnotifications.services.LocalNotificationsService"
+                android:exported="false" />
         <receiver android:name="com.dexterous.flutterlocalnotifications.NotificationReceiver" />
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">

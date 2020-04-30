@@ -438,10 +438,23 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void cancelAction(String payload) {
+    _cancelAllNotifications();
+    print(payload);
+  }
+
   Future<void> _showNotification() async {
+    var newAction = NotificationAction(
+        actionText: "CANCEL",
+        callback: cancelAction,
+        payload: "cancel",
+        launchesApp: false);
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'your channel id', 'your channel name', 'your channel description',
-        importance: Importance.Max, priority: Priority.High, ticker: 'ticker');
+        importance: Importance.Max,
+        priority: Priority.High,
+        ticker: 'ticker',
+        actions: [newAction]);
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
