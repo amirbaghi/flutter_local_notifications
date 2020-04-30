@@ -13,8 +13,11 @@ import com.dexterous.flutterlocalnotifications.models.styles.DefaultStyleInforma
 import com.dexterous.flutterlocalnotifications.models.styles.InboxStyleInformation;
 import com.dexterous.flutterlocalnotifications.models.styles.MessagingStyleInformation;
 import com.dexterous.flutterlocalnotifications.models.styles.StyleInformation;
+import com.dexterous.flutterlocalnotifications.models.NotificationAction;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -92,6 +95,7 @@ public class NotificationDetails {
     private static final String LED_COLOR_RED = "ledColorRed";
     private static final String LED_COLOR_GREEN = "ledColorGreen";
     private static final String LED_COLOR_BLUE = "ledColorBlue";
+    private static final String ACTIONS = "actions";
 
     private static final String LED_ON_MS = "ledOnMs";
     private static final String LED_OFF_MS = "ledOffMs";
@@ -104,6 +108,7 @@ public class NotificationDetails {
     private static final String SHOW_WHEN = "showWhen";
     private static final String WHEN = "when";
     private static final String ADDITIONAL_FLAGS = "additionalFlags";
+
 
 
     public Integer id;
@@ -155,6 +160,7 @@ public class NotificationDetails {
     public int[] additionalFlags;
     public Boolean showWhen;
     public Long when;
+    public List<NotificationAction> actions;
 
 
 
@@ -167,6 +173,14 @@ public class NotificationDetails {
         notificationDetails.id = (Integer) arguments.get(ID);
         notificationDetails.title = (String) arguments.get(TITLE);
         notificationDetails.body = (String) arguments.get(BODY);
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> actionMaps = (List<Map<String, Object>>)arguments.get(ACTIONS);
+        notificationDetails.actions = new ArrayList<NotificationAction>();
+        for (Map<String, Object> actionMap : actionMaps){
+            NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"), (String) actionMap.get("actionText"), (String) actionMap.get("payload"), ((Boolean) actionMap.get("launchesApp")).booleanValue());
+            notificationDetails.actions.add(newAction);
+        }
+
         if (arguments.containsKey(MILLISECONDS_SINCE_EPOCH)) {
             notificationDetails.millisecondsSinceEpoch = (Long) arguments.get(MILLISECONDS_SINCE_EPOCH);
         }
