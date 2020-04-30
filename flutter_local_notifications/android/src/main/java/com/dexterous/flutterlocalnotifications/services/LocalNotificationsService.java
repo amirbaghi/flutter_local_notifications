@@ -1,8 +1,11 @@
 package com.dexterous.flutterlocalnotifications.services;
 
 import android.content.Intent;
+import android.app.Activity;
 import android.app.IntentService;
 import android.util.Log;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.dexterous.flutterlocalnotifications.models.NotificationAction;
 
@@ -57,10 +60,15 @@ public class LocalNotificationsService extends IntentService {
         return invokeCallback(callbackName, payload);
     }
 
-    private static boolean invokeCallback(String callbackName, String payload) {
-        MethodChannel channel = LocalNotificationsService.getSharedChannel();
+    private static boolean invokeCallback(final String callbackName, final String payload) {
+        final MethodChannel channel = LocalNotificationsService.getSharedChannel();
         if (channel != null) {
-            channel.invokeMethod(callbackName, payload);
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                public void run() {
+                    channel.invokeMethod(callbackName, payload);
+                    // code goes here
+                }
+            });
             System.out.println("ddddddddddddddddddddddd");
             return true;
         } else {
