@@ -213,12 +213,9 @@ class AndroidNotificationDetails {
   /// For example, use a value of 4 to allow the audio to repeat as documented at https://developer.android.com/reference/android/app/Notification.html#FLAG_INSISTEN
   final Int32List additionalFlags;
 
-<<<<<<< HEAD
-=======
   /// A [List] of [NotificationAction] objects.
   final List<NotificationAction> actions;
 
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
 
   /// Creates a [Map] object that describes the [AndroidNotificationDetails] object.
   ///
