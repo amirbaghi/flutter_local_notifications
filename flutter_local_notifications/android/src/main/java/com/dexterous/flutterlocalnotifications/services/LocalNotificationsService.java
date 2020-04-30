@@ -40,7 +40,10 @@ public class LocalNotificationsService extends IntentService {
     }
 
     public static boolean handleIntent(Intent intent) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
         if (intent == null) {
             return false;
         }
@@ -59,6 +62,7 @@ public class LocalNotificationsService extends IntentService {
         return invokeCallback(callbackName, payload);
     }
 
+<<<<<<< HEAD
     private static boolean invokeCallback(final String callbackName, final String payload) {
         final MethodChannel channel = LocalNotificationsService.getSharedChannel();
         if (channel != null) {
@@ -67,6 +71,12 @@ public class LocalNotificationsService extends IntentService {
                     channel.invokeMethod(callbackName, payload);
                 }
             });
+=======
+    private static boolean invokeCallback(String callbackName, String payload) {
+        MethodChannel channel = LocalNotificationsService.getSharedChannel();
+        if (channel != null) {
+            channel.invokeMethod(callbackName, payload);
+>>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
             return true;
         } else {
             return false;
