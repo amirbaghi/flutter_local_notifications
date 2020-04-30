@@ -62,7 +62,6 @@ public class NotificationAction {
         if (!isEmptyAction() && actionIntent != null) {
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
             actionIntent.putExtra(PAYLOAD_KEY, payload);
-
         }
     }
 }
