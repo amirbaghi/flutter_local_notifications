@@ -40,7 +40,6 @@ public class LocalNotificationsService extends IntentService {
     }
 
     public static boolean handleIntent(Intent intent) {
-
         if (intent == null) {
             return false;
         }
