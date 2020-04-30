@@ -38,13 +38,19 @@ public class NotificationAction {
     }
 
     public PendingIntent getIntent(Context context) {
+        System.out.println("get intent");
         return launchesApp
                 ? getIntentForLaunchesApp(context)
                 : getIntentNotLaunchesApp(context);
     }
 
     private PendingIntent getIntentNotLaunchesApp(Context context) {
+<<<<<<< HEAD
         Intent actionIntent = new Intent(context, BackgroundManagerBroadcastReceiver.class);
+=======
+        System.out.println("Start of not launches app");
+        Intent actionIntent = new Intent(context, LocalNotificationsService.class);
+>>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         addActionsToIntent(actionIntent);
         return PendingIntent.getBroadcast(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
@@ -59,9 +65,12 @@ public class NotificationAction {
     }
 
     private void addActionsToIntent(Intent actionIntent) {
+        System.out.println("addActionsToIntent");
         if (!isEmptyAction() && actionIntent != null) {
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
             actionIntent.putExtra(PAYLOAD_KEY, payload);
+            System.out.println(CALLBACK_KEY + callbackFunctionName);
+            System.out.println(PAYLOAD_KEY + payload);
         }
     }
 }

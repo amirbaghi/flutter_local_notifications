@@ -205,7 +205,6 @@ public class FlutterLocalNotificationsPlugin
         addActions(builder, notificationDetails, context);
 
 
-        addActions(builder, notificationDetails, context);
 
         Notification notification = builder.build();
         if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
@@ -975,6 +974,7 @@ public class FlutterLocalNotificationsPlugin
     /// valid
     private NotificationDetails extractNotificationDetails(Result result, Map<String, Object> arguments) {
         NotificationDetails notificationDetails = NotificationDetails.from(arguments);
+        System.out.println("extract");
         if (hasInvalidIcon(result, notificationDetails.icon)
                 || hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource)
                 || hasInvalidBigPictureResources(result, notificationDetails)
