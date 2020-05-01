@@ -182,13 +182,13 @@ class AndroidFlutterLocalNotificationsPlugin
   Future<void> show(int id, String title, String body,
       {AndroidNotificationDetails notificationDetails, String payload}) {
     validateId(id);
-    print(notificationDetails.actions.toString());
     /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
      option to prevent code duplication */
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
+        print("flutter side, invoking ");
         return _onSelectNotification(payload);
       }
       List<NotificationAction> actionsToCheck = []
