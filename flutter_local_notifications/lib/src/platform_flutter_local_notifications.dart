@@ -64,7 +64,7 @@ class AndroidFlutterLocalNotificationsPlugin
   Future<bool> initialize(AndroidInitializationSettings initializationSettings,
       {SelectNotificationCallback onSelectNotification}) async {
     _onSelectNotification = onSelectNotification;
-    _channel.setMethodCallHandler(_handleMethod);
+    // _channel.setMethodCallHandler(_handleMethod);
     return await _channel.invokeMethod(
         'initialize', initializationSettings.toMap());
   }
@@ -82,9 +82,15 @@ class AndroidFlutterLocalNotificationsPlugin
     serializedPlatformSpecifics['allowWhileIdle'] = androidAllowWhileIdle;
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      if (method.method == "selectNotification") {
+        return _onSelectNotification(payload);
+      }
+      List<NotificationAction> actionsToCheck = []
+        ..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        String functionName =
+            NotificationAction.getCallbackNameFromAction(action);
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -107,9 +113,15 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      if (method.method == "selectNotification") {
+        return _onSelectNotification(payload);
+      }
+      List<NotificationAction> actionsToCheck = []
+        ..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        String functionName =
+            NotificationAction.getCallbackNameFromAction(action);
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -137,11 +149,17 @@ class AndroidFlutterLocalNotificationsPlugin
       AndroidNotificationDetails notificationDetails,
       {String payload}) async {
     validateId(id);
-  _channel.setMethodCallHandler((MethodCall method) {
+    _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      if (method.method == "selectNotification") {
+        return _onSelectNotification(payload);
+      }
+      List<NotificationAction> actionsToCheck = []
+        ..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        String functionName =
+            NotificationAction.getCallbackNameFromAction(action);
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -165,9 +183,16 @@ class AndroidFlutterLocalNotificationsPlugin
       {AndroidNotificationDetails notificationDetails, String payload}) {
     validateId(id);
     print(notificationDetails.actions.toString());
+    /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
+     option to prevent code duplication */
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      if (method.method == "selectNotification") {
+        return _onSelectNotification(payload);
+      }
+      List<NotificationAction> actionsToCheck = []
+        ..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
         //TODO: Do this
         // String functionName = NotificationAction.getCallbackNameFromAction(action);
@@ -196,9 +221,15 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
+      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      if (method.method == "selectNotification") {
+        return _onSelectNotification(payload);
+      }
+      List<NotificationAction> actionsToCheck = []
+        ..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
+        String functionName =
+            NotificationAction.getCallbackNameFromAction(action);
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -237,15 +268,18 @@ class AndroidFlutterLocalNotificationsPlugin
     }
   }
 
-  Future<void> _handleActionMethods(MethodCall call, AndroidNotificationDetails notificationDetails){
+  Future<void> _handleActionMethods(
+      MethodCall call, AndroidNotificationDetails notificationDetails) {
     var payload = call.arguments;
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
-      for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
-        if (call.method == functionName) {
-          return action.callback(payload);
-        }
+    List<NotificationAction> actionsToCheck = []
+      ..addAll(notificationDetails.actions);
+    for (NotificationAction action in actionsToCheck) {
+      String functionName =
+          NotificationAction.getCallbackNameFromAction(action);
+      if (call.method == functionName) {
+        return action.callback(payload);
       }
+    }
   }
 }
 
