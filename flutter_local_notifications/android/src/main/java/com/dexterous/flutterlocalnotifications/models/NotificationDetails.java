@@ -201,7 +201,6 @@ public class NotificationDetails {
             ArrayList<Map<String, Object>> actionMaps = (ArrayList<Map<String, Object>>) platformChannelSpecifics.get(ACTIONS);
             notificationDetails.actions = new ArrayList<NotificationAction>();
             for (Map<String, Object> actionMap : actionMaps) {
-                System.out.println(actionMap.toString());
                 NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"),
                         (String) actionMap.get("actionText"), (String) actionMap.get("payload"),
                         ((Boolean) actionMap.get("launchesApp")).booleanValue());
