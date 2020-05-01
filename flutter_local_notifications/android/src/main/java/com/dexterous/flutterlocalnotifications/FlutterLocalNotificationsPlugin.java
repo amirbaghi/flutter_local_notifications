@@ -517,6 +517,7 @@ public class FlutterLocalNotificationsPlugin
         Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
         String className = launchIntent.getComponent().getClassName();
         try {
+            System.out.println(className);
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -942,12 +943,11 @@ public class FlutterLocalNotificationsPlugin
     /// valid
     private NotificationDetails extractNotificationDetails(Result result, Map<String, Object> arguments) {
         NotificationDetails notificationDetails = NotificationDetails.from(arguments);
-        System.out.println("extract");
-        if (hasInvalidIcon(result, notificationDetails.icon)
-                || hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource)
-                || hasInvalidBigPictureResources(result, notificationDetails)
-                || hasInvalidRawSoundResource(result, notificationDetails)
-                || hasInvalidLedDetails(result, notificationDetails)) {
+        if (hasInvalidIcon(result, notificationDetails.icon) ||
+                hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource) ||
+                hasInvalidBigPictureResources(result, notificationDetails) ||
+                hasInvalidRawSoundResource(result, notificationDetails) ||
+                hasInvalidLedDetails(result, notificationDetails)) {
             return null;
         }
 
