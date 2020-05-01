@@ -547,6 +547,7 @@ public class FlutterLocalNotificationsPlugin
         Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
         String className = launchIntent.getComponent().getClassName();
         try {
+            System.out.println(className);
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
