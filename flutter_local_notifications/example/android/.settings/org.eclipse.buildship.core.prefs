@@ -13,6 +13,7 @@ eclipse.preferences.version=1
 gradle.user.home=
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 java.home=/usr/lib/jvm/java-14-oracle
 =======
 java.home=/usr/lib/jvm/java-1.8.0-openjdk-amd64
@@ -20,6 +21,9 @@ java.home=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 =======
 java.home=/usr/lib/jvm/java-8-openjdk-amd64
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+java.home=/usr/lib/jvm/java-14-oracle
+>>>>>>> deleted a couple of print statements
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true
