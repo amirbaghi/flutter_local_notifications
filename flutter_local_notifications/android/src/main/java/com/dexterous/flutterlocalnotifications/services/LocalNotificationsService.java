@@ -52,7 +52,6 @@ public class LocalNotificationsService extends IntentService {
         String callbackName = intent.getStringExtra(NotificationAction.CALLBACK_KEY);
         String payload = intent.getStringExtra(NotificationAction.PAYLOAD_KEY);
 
-        System.out.println(callbackName);
         if (isNullOrEmpty(callbackName)) {
             return false;
         }
@@ -69,7 +68,6 @@ public class LocalNotificationsService extends IntentService {
                     // code goes here
                 }
             });
-            System.out.println("ddddddddddddddddddddddd");
             return true;
         } else {
             return false;
