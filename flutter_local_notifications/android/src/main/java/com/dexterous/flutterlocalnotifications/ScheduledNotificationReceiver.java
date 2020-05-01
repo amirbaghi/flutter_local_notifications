@@ -27,7 +27,6 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
         boolean repeat = intent.getBooleanExtra(FlutterLocalNotificationsPlugin.REPEAT, false);
 
 
-        System.out.println("ladjflka");
 
         // TODO: Change this
         int id = intent.getIntExtra("notificationId", 0);
