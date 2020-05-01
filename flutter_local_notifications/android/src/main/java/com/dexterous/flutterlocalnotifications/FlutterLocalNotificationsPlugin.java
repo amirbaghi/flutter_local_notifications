@@ -488,15 +488,10 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
     }
 
     private static Class getMainActivityClass(Context context) {
-        System.out.println("got here");
         String packageName = context.getPackageName();
-        System.out.println("package name " + packageName);
         Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
         String className = launchIntent.getComponent().getClassName();
-        System.err.println("Class name " + className);
         try {
-            System.out.println("Got into try statement");
-            System.out.println(className);
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -965,6 +960,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
 
     @Override
     public boolean onNewIntent(Intent intent) {
+        System.out.println("new intent in main activity");
         boolean res = sendNotificationPayloadMessage(intent);
         if (res && mainActivity != null) {
             mainActivity.setIntent(intent);
@@ -974,6 +970,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
 
     private Boolean sendNotificationPayloadMessage(Intent intent) {
         if (SELECT_NOTIFICATION.equals(intent.getAction())) {
+            System.out.println("java side, invoking");
             String payload = intent.getStringExtra(PAYLOAD);
             channel.invokeMethod("selectNotification", payload);
             return true;
