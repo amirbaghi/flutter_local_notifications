@@ -238,6 +238,7 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
      option to prevent code duplication */
     _channel.setMethodCallHandler((MethodCall method) {
@@ -258,6 +259,8 @@ class AndroidFlutterLocalNotificationsPlugin
 <<<<<<< HEAD
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
 =======
+=======
+>>>>>>> added print statements for debugging purposes
     /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
      option to prevent code duplication */
 >>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
@@ -265,6 +268,7 @@ class AndroidFlutterLocalNotificationsPlugin
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
+        print("flutter side, invoking ");
         return _onSelectNotification(payload);
       }
       List<NotificationAction> actionsToCheck = []
