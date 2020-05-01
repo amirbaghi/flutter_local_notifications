@@ -68,18 +68,22 @@ public class NotificationAction {
     public PendingIntent getIntent(Context context) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("get intent");
 =======
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
 =======
         System.out.println("get intent");
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
+=======
+>>>>>>> added some print statements
         return launchesApp
                 ? getIntentForLaunchesApp(context)
                 : getIntentNotLaunchesApp(context);
     }
 
     private PendingIntent getIntentNotLaunchesApp(Context context) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -98,6 +102,8 @@ public class NotificationAction {
 =======
         System.out.println("Start of not launches app");
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
+=======
+>>>>>>> added some print statements
         Intent actionIntent = new Intent(context, LocalNotificationsService.class);
         addActionsToIntent(actionIntent);
         return PendingIntent.getService(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -114,6 +120,7 @@ public class NotificationAction {
     }
 
     private void addActionsToIntent(Intent actionIntent) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         System.out.println("addActionsToIntent");
@@ -135,12 +142,13 @@ public class NotificationAction {
 =======
         System.out.println("addActionsToIntent");
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
+=======
+>>>>>>> added some print statements
         if (!isEmptyAction() && actionIntent != null) {
             actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
             actionIntent.putExtra(PAYLOAD_KEY, payload);
-            System.out.println(CALLBACK_KEY + callbackFunctionName);
-            System.out.println(PAYLOAD_KEY + payload);
+
         }
     }
 }

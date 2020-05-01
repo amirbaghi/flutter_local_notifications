@@ -543,10 +543,14 @@ public class FlutterLocalNotificationsPlugin
     }
 
     private static Class getMainActivityClass(Context context) {
+        System.out.println("got here");
         String packageName = context.getPackageName();
+        System.out.println("package name " + packageName);
         Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
         String className = launchIntent.getComponent().getClassName();
+        System.err.println("Class name " + className);
         try {
+            System.out.println("Got into try statement");
             System.out.println(className);
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
