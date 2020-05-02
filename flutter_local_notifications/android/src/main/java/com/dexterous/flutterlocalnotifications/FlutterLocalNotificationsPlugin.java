@@ -962,13 +962,16 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         System.out.println("new intent in main activity");
         boolean res = sendNotificationPayloadMessage(intent);
         if (res && mainActivity != null) {
+            // Added FLAG to the set intent to prevent the same intent from being handled again in onNewIntent function (which was the case without the FLAG).
+            intent.putExtra("FLAG","doNothing");
             mainActivity.setIntent(intent);
         }
         return res;
     }
 
     private Boolean sendNotificationPayloadMessage(Intent intent) {
-        if (SELECT_NOTIFICATION.equals(intent.getAction())) {
+        // The second check is for making sure that the intent being handled is not being processed for a second time. 
+        if (SELECT_NOTIFICATION.equals(intent.getAction()) && (intent.getStringExtra("FLAG") == null)) {
             System.out.println("java side, invoking");
             String payload = intent.getStringExtra(PAYLOAD);
             channel.invokeMethod("selectNotification", payload);

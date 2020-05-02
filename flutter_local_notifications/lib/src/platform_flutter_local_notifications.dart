@@ -82,7 +82,7 @@ class AndroidFlutterLocalNotificationsPlugin
     serializedPlatformSpecifics['allowWhileIdle'] = androidAllowWhileIdle;
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -113,7 +113,7 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -151,7 +151,7 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -186,7 +186,7 @@ class AndroidFlutterLocalNotificationsPlugin
      option to prevent code duplication */
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         print("flutter side, invoking ");
         return _onSelectNotification(payload);
@@ -221,7 +221,7 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
