@@ -180,6 +180,7 @@ public class FlutterLocalNotificationsPlugin
         addActions(builder, notificationDetails, context);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         return builder.build();
 =======
@@ -211,6 +212,8 @@ public class FlutterLocalNotificationsPlugin
         builder.addAction(0, "NEXT", newPIntent);
 
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
+=======
+>>>>>>> deleted pending intent NEXT
         Notification notification = builder.build();
         if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
             for (int additionalFlag : notificationDetails.additionalFlags) {
