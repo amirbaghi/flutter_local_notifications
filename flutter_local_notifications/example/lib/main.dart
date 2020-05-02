@@ -21,6 +21,9 @@ final BehaviorSubject<ReceivedNotification> didReceiveLocalNotificationSubject =
 final BehaviorSubject<String> selectNotificationSubject =
     BehaviorSubject<String>();
 
+
+final BehaviorSubject<String> cancelNotifs = BehaviorSubject<String>();
+
 NotificationAppLaunchDetails notificationAppLaunchDetails;
 
 class ReceivedNotification {
@@ -106,6 +109,7 @@ class _HomePageState extends State<HomePage> {
     _requestIOSPermissions();
     _configureDidReceiveLocalNotificationSubject();
     _configureSelectNotificationSubject();
+    _configureCancelNotifs(); 
   }
 
   void _requestIOSPermissions() {
@@ -165,6 +169,7 @@ class _HomePageState extends State<HomePage> {
   void dispose() {
     didReceiveLocalNotificationSubject.close();
     selectNotificationSubject.close();
+    cancelNotifs.close();
     super.dispose();
   }
 
@@ -432,10 +437,22 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void cancelAction(String payload) {
-    _cancelAllNotifications();
-    print(payload);
+  void cancelAction(String payload)  async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+    cancelNotifs.add(payload);
   }
+
+
+  void _configureCancelNotifs(){
+    cancelNotifs.stream.listen((String payload) async {
+      _cancelAllNotifications();
+      print(payload);
+    });
+  }
+
+  
 
   Future<void> _showNotification() async {
     var newAction = NotificationAction(

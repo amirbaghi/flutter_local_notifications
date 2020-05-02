@@ -65,7 +65,6 @@ public class LocalNotificationsService extends IntentService {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 public void run() {
                     channel.invokeMethod(callbackName, payload);
-                    // code goes here
                 }
             });
             return true;
