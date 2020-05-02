@@ -5,6 +5,7 @@ connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 connection.project.dir=../example/android/app
 =======
 connection.project.dir=../example/android
@@ -15,13 +16,20 @@ connection.project.dir=
 =======
 connection.project.dir=../example/android
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+connection.project.dir=
+>>>>>>> deleted pending intent NEXT
 eclipse.preferences.version=1
 gradle.user.home=
+<<<<<<< HEAD
 <<<<<<< HEAD
 java.home=/usr/lib/jvm/java-14-oracle
 =======
 java.home=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+=======
+java.home=/usr/lib/jvm/java-14-oracle
+>>>>>>> deleted pending intent NEXT
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true
