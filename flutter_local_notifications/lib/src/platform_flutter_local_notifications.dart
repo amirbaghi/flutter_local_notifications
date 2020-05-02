@@ -84,10 +84,14 @@ class AndroidFlutterLocalNotificationsPlugin
       var payload = method.arguments;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
 =======
       // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
 >>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
+=======
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
+>>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -131,10 +135,14 @@ class AndroidFlutterLocalNotificationsPlugin
       var payload = method.arguments;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
 =======
       // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
 >>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
+=======
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
+>>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -200,7 +208,7 @@ class AndroidFlutterLocalNotificationsPlugin
     _channel.setMethodCallHandler((MethodCall method) {
 >>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
       var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -244,6 +252,7 @@ class AndroidFlutterLocalNotificationsPlugin
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
+<<<<<<< HEAD
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -267,6 +276,8 @@ class AndroidFlutterLocalNotificationsPlugin
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
+=======
+>>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
         print("flutter side, invoking ");
         return _onSelectNotification(payload);
@@ -308,10 +319,14 @@ class AndroidFlutterLocalNotificationsPlugin
       var payload = method.arguments;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
 =======
       // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
 >>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
+=======
+      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
+>>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
