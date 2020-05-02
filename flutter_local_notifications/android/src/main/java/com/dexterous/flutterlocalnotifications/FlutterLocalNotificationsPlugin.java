@@ -173,12 +173,6 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         addActions(builder, notificationDetails, context);
 
 
-        Intent newIntent = new Intent(context, LocalNotificationsService.class);
-        PendingIntent newPIntent = PendingIntent.getService(context, 0, newIntent, 0);
-        builder.addAction(0, "NEXT", newPIntent);
-
-
-
         return builder.build();
     }
 
