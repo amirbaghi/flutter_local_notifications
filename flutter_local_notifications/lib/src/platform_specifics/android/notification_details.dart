@@ -216,7 +216,6 @@ class AndroidNotificationDetails {
   /// A [List] of [NotificationAction] objects.
   final List<NotificationAction> actions;
 
-
   /// Creates a [Map] object that describes the [AndroidNotificationDetails] object.
   ///
   /// Mainly for internal use to send the data over a platform channel.
