@@ -170,10 +170,20 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         setProgress(notificationDetails, builder);
         setCategory(notificationDetails, builder);
         setTimeoutAfter(notificationDetails, builder);
+<<<<<<< HEAD
         addActions(builder, notificationDetails, context);
 
 
         return builder.build();
+=======
+        Notification notification = builder.build();
+        if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
+            for(int additionalFlag:notificationDetails.additionalFlags) {
+                notification.flags |= additionalFlag;
+            }
+        }
+        return notification;
+>>>>>>> [flutter_local_notifications] add extra flags for Android notifications (#608)
     }
 
 
