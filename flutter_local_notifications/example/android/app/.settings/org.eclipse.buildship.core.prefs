@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=81a5b1e74e334f078b03441f2fc0ef55bf0087a8
+=======
+>>>>>>> added org.eclipse.buildship.core.prefs
 arguments=
 auto.sync=false
 build.scans.enabled=false
