@@ -2,9 +2,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=81a5b1e74e334f078b03441f2fc0ef55bf0087a8
+=======
+>>>>>>> added org.eclipse.buildship.core.prefs
 =======
 >>>>>>> added org.eclipse.buildship.core.prefs
 =======
@@ -14,6 +17,7 @@ auto.sync=false
 build.scans.enabled=false
 connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
 connection.project.dir=
+<<<<<<< HEAD
 <<<<<<< HEAD
 eclipse.preferences.version=1
 gradle.user.home=
@@ -41,3 +45,13 @@ show.executions.view=true
 connection.project.dir=..
 eclipse.preferences.version=1
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+=======
+eclipse.preferences.version=1
+gradle.user.home=
+java.home=/usr/lib/jvm/java-14-oracle
+jvm.arguments=
+offline.mode=false
+override.workspace.settings=true
+show.console.view=true
+show.executions.view=true
+>>>>>>> added org.eclipse.buildship.core.prefs
