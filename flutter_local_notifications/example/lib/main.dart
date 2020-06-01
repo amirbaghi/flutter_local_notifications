@@ -40,6 +40,14 @@ class ReceivedNotification {
   });
 }
 
+  void cancelAction(String payload)  async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+    cancelNotifs.add(payload);
+  }
+
+
 /// IMPORTANT: running the following code on its own won't work as there is setup required for each platform head project.
 /// Please download the complete example app from the GitHub repository where all the setup has been done
 Future<void> main() async {
@@ -110,6 +118,13 @@ class _HomePageState extends State<HomePage> {
     _configureDidReceiveLocalNotificationSubject();
     _configureSelectNotificationSubject();
     _configureCancelNotifs(); 
+    initPlatformState();
+  }
+
+   Future<void> initPlatformState() async {
+    print('Initializing...');
+    await BackgroundManager.initialize();
+    print('Initialization done');
   }
 
   void _requestIOSPermissions() {
@@ -443,12 +458,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void cancelAction(String payload)  async {
-    if (payload != null) {
-      debugPrint('notification payload: ' + payload);
-    }
-    cancelNotifs.add(payload);
-  }
+  // void cancelAction(String payload)  async {
+  //   if (payload != null) {
+  //     debugPrint('notification payload: ' + payload);
+  //   }
+  //   cancelNotifs.add(payload);
+  // }
 
 
   void _configureCancelNotifs(){

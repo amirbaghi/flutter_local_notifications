@@ -201,11 +201,8 @@ public class NotificationDetails {
             ArrayList<Map<String, Object>> actionMaps = (ArrayList<Map<String, Object>>) platformChannelSpecifics.get(ACTIONS);
             notificationDetails.actions = new ArrayList<NotificationAction>();
             for (Map<String, Object> actionMap : actionMaps) {
-<<<<<<< HEAD
-=======
-                System.out.println(actionMap.toString());
->>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
-                NotificationAction newAction = new NotificationAction((String) actionMap.get("callback"),
+
+                NotificationAction newAction = new NotificationAction((Long) actionMap.get("callback"),
                         (String) actionMap.get("actionText"), (String) actionMap.get("payload"),
                         ((Boolean) actionMap.get("launchesApp")).booleanValue());
                 notificationDetails.actions.add(newAction);
