@@ -32,3 +32,6 @@ export 'src/platform_flutter_local_notifications.dart'
     hide MethodChannelFlutterLocalNotificationsPlugin;
 export 'src/types.dart';
 export 'src/typedefs.dart';
+export 'src/callback_dispatcher/background_plugin.dart';
+export 'src/callback_dispatcher/callback_dispatcher.dart';
+
