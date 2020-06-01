@@ -8,6 +8,7 @@ import com.dexterous.flutterlocalnotifications.services.LocalNotificationsServic
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
 import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin;
 =======
@@ -28,13 +29,24 @@ public class NotificationAction {
     // private String callbackFunctionName;
     private Long callbackHandle;
 =======
+=======
+import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerPlugin;
+import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
+
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
 
 
 import java.util.Objects;
+import java.util.function.Function;
 
 public class NotificationAction {
+<<<<<<< HEAD
     private String callbackFunctionName;
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+    // private String callbackFunctionName;
+    private Long callbackHandle;
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
     public String actionText;
     private String payload;
     private boolean launchesApp;
@@ -43,6 +55,7 @@ public class NotificationAction {
     public static final String PAYLOAD_KEY = "payload_key";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public NotificationAction(Long callback, String actionText, String payload, boolean launchesApp) {
         // this.callbackFunctionName = callbackFunctionName;
         this.callbackHandle = callback;
@@ -50,6 +63,11 @@ public class NotificationAction {
     public NotificationAction(String callbackFunctionName, String actionText, String payload, boolean launchesApp) {
         this.callbackFunctionName = callbackFunctionName;
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+    public NotificationAction(Long callback, String actionText, String payload, boolean launchesApp) {
+        // this.callbackFunctionName = callbackFunctionName;
+        this.callbackHandle = callback;
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
         this.actionText = actionText;
         this.payload = payload;
         this.launchesApp = launchesApp;
@@ -57,10 +75,14 @@ public class NotificationAction {
 
     private boolean isEmptyAction() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return this.callbackHandle == null
 =======
         return "".equals(this.callbackFunctionName)
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+        return this.callbackHandle == null
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
                 && "".equals(this.actionText)
                 && "".equals(this.payload);
     }
@@ -93,6 +115,7 @@ public class NotificationAction {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         Intent actionIntent = new Intent(context, BackgroundManagerBroadcastReceiver.class);
 =======
         System.out.println("Start of not launches app");
@@ -113,6 +136,9 @@ public class NotificationAction {
         System.out.println("Start of not launches app");
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         Intent actionIntent = new Intent(context, LocalNotificationsService.class);
+=======
+        Intent actionIntent = new Intent(context, BackgroundManagerBroadcastReceiver.class);
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
         addActionsToIntent(actionIntent);
         return PendingIntent.getService(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
@@ -157,8 +183,13 @@ public class NotificationAction {
         System.out.println("addActionsToIntent");
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         if (!isEmptyAction() && actionIntent != null) {
+<<<<<<< HEAD
             actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+            // actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
+            actionIntent.putExtra(BackgroundManagerPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
             actionIntent.putExtra(PAYLOAD_KEY, payload);
             System.out.println(CALLBACK_KEY + callbackFunctionName);
             System.out.println(PAYLOAD_KEY + payload);

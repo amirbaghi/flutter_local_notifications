@@ -35,6 +35,7 @@ connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 connection.project.dir=../example/android/app
 =======
 connection.project.dir=../example/android
@@ -116,6 +117,9 @@ connection.project.dir=../example/android
 =======
 connection.project.dir=
 >>>>>>> deleted pending intent NEXT
+=======
+connection.project.dir=../example/android/app
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
 eclipse.preferences.version=1
 gradle.user.home=
 <<<<<<< HEAD
