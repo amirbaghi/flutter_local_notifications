@@ -1,8 +1,10 @@
 
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 
 class NotificationAction {
-  final Function(String) callback;
+  final Function callback;
   final String actionText;
   final String payload;
   final bool launchesApp;
@@ -22,8 +24,11 @@ class NotificationAction {
   );
 
   Map toMapForPlatformChannel() {
+    CallbackHandle handle = PluginUtilities.getCallbackHandle(callback);
     return {
-      'callback' : actionText,
+      // TODO: adflkadslkj
+      'callback': PluginUtilities.getCallbackHandle(callback).toRawHandle(),
+      // 'callback' : actionText,
       'actionText': actionText,
       'payload': payload,
       'launchesApp': launchesApp,
@@ -34,7 +39,7 @@ class NotificationAction {
     return action.callbackName ?? _nameOfFunction(action.callback);
   }
 
-  static String _nameOfFunction(Function(String) callback) {
+  static String _nameOfFunction(Function callback) {
     if (callback == null) {
       return '';
     }
