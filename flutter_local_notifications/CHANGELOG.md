@@ -3,9 +3,13 @@
 * [iOS] Fixes to ensure that the native completion handlers were called appropriately. If you had some issues using this plugin combined with push notifications (e.g. via `firebase_messaging`) when the app was in the foreground then I would recommend updating to this version. Thanks to [Paweł Szot](https://github.com/szotp) for picking up the gap in the code in handling the native `willPresentNotification` call
 * The readme has been been touched up and had some sections rearranged. Thanks to the PR from [psyanite](https://github.com/psyanite)
 <<<<<<< HEAD
+<<<<<<< HEAD
 * Bumped lower bound of Dart SDK dependency to 2.0
 =======
 >>>>>>> [flutter_local_notifications] fix code around calling iOS completion handlers (#652)
+=======
+* Bumped lower bound of Dart SDK dependency to 2.0
+>>>>>>> [flutter_local_notifications] bumped lower bound of Dart SDK dependency to 2.0 (#653)
 
 # [1.4.3]
 
