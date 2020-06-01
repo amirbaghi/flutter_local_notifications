@@ -5,8 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.dexterous.flutterlocalnotifications.services.LocalNotificationsService;
+<<<<<<< HEAD
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
 import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin;
+=======
+import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerPlugin;
+import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
 
 
 
@@ -46,11 +51,15 @@ public class NotificationAction {
 
     private PendingIntent getIntentNotLaunchesApp(Context context) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         Intent actionIntent = new Intent(context, BackgroundManagerBroadcastReceiver.class);
 =======
         System.out.println("Start of not launches app");
         Intent actionIntent = new Intent(context, LocalNotificationsService.class);
 >>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
+=======
+        Intent actionIntent = new Intent(context, BackgroundManagerBroadcastReceiver.class);
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
         addActionsToIntent(actionIntent);
         return PendingIntent.getBroadcast(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
@@ -67,7 +76,12 @@ public class NotificationAction {
     private void addActionsToIntent(Intent actionIntent) {
         System.out.println("addActionsToIntent");
         if (!isEmptyAction() && actionIntent != null) {
+<<<<<<< HEAD
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
+=======
+            // actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
+            actionIntent.putExtra(BackgroundManagerPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
+>>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
             actionIntent.putExtra(PAYLOAD_KEY, payload);
             System.out.println(CALLBACK_KEY + callbackFunctionName);
             System.out.println(PAYLOAD_KEY + payload);
