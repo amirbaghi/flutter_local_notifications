@@ -82,35 +82,15 @@ class AndroidFlutterLocalNotificationsPlugin
     serializedPlatformSpecifics['allowWhileIdle'] = androidAllowWhileIdle;
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
-=======
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
-=======
-      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
->>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
       List<NotificationAction> actionsToCheck = []
         ..addAll(notificationDetails.actions);
-<<<<<<< HEAD
       for (NotificationAction action in actionsToCheck) {
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
-=======
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
-      for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
-=======
-      for (NotificationAction action in actionsToCheck) {
-        String functionName =
-            NotificationAction.getCallbackNameFromAction(action);
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -133,35 +113,15 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
-=======
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
-=======
-      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
->>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
       List<NotificationAction> actionsToCheck = []
         ..addAll(notificationDetails.actions);
-<<<<<<< HEAD
       for (NotificationAction action in actionsToCheck) {
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
-=======
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
-      for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
-=======
-      for (NotificationAction action in actionsToCheck) {
-        String functionName =
-            NotificationAction.getCallbackNameFromAction(action);
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -189,25 +149,7 @@ class AndroidFlutterLocalNotificationsPlugin
       AndroidNotificationDetails notificationDetails,
       {String payload}) async {
     validateId(id);
-<<<<<<< HEAD
-<<<<<<< HEAD
     _channel.setMethodCallHandler((MethodCall method) {
-      var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
-      if (method.method == "selectNotification") {
-        print("flutter side, invoking ");
-        return _onSelectNotification(payload);
-      }
-      List<NotificationAction> actionsToCheck = []
-        ..addAll(notificationDetails.actions);
-      for (NotificationAction action in actionsToCheck) {
-        String functionName =
-            NotificationAction.getCallbackNameFromAction(action);
-=======
-  _channel.setMethodCallHandler((MethodCall method) {
-=======
-    _channel.setMethodCallHandler((MethodCall method) {
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
@@ -216,13 +158,8 @@ class AndroidFlutterLocalNotificationsPlugin
       List<NotificationAction> actionsToCheck = []
         ..addAll(notificationDetails.actions);
       for (NotificationAction action in actionsToCheck) {
-<<<<<<< HEAD
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
-=======
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -245,15 +182,11 @@ class AndroidFlutterLocalNotificationsPlugin
   Future<void> show(int id, String title, String body,
       {AndroidNotificationDetails notificationDetails, String payload}) {
     validateId(id);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
      option to prevent code duplication */
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
-<<<<<<< HEAD
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
@@ -263,36 +196,6 @@ class AndroidFlutterLocalNotificationsPlugin
         //TODO: Do this
         // String functionName = NotificationAction.getCallbackNameFromAction(action);
         String functionName = action.actionText;
-=======
-=======
-    print(notificationDetails.actions.toString());
-<<<<<<< HEAD
->>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
-=======
-=======
->>>>>>> added print statements for debugging purposes
-    /* TODO: Refactor duplicated code, in particular the method that is set for the channel method call handler, should be declared as a separate
-     option to prevent code duplication */
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
-    _channel.setMethodCallHandler((MethodCall method) {
-      var payload = method.arguments;
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
-=======
->>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
-      if (method.method == "selectNotification") {
-        return _onSelectNotification(payload);
-      }
-      List<NotificationAction> actionsToCheck = []
-        ..addAll(notificationDetails.actions);
-      for (NotificationAction action in actionsToCheck) {
-<<<<<<< HEAD
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
-=======
-        //TODO: Do this
-        // String functionName = NotificationAction.getCallbackNameFromAction(action);
-        String functionName = action.actionText;
->>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -317,35 +220,15 @@ class AndroidFlutterLocalNotificationsPlugin
     validateId(id);
     _channel.setMethodCallHandler((MethodCall method) {
       var payload = method.arguments;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
-=======
-      // The if statement for the on select method (or on tap notification action, the invokation at the beginning of initialize method should be removed as it's unnecessary)
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
-=======
-      // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
->>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
         return _onSelectNotification(payload);
       }
       List<NotificationAction> actionsToCheck = []
         ..addAll(notificationDetails.actions);
-<<<<<<< HEAD
       for (NotificationAction action in actionsToCheck) {
         String functionName =
             NotificationAction.getCallbackNameFromAction(action);
-=======
-      List<NotificationAction> actionsToCheck = []..addAll(notificationDetails.actions);
-      for (NotificationAction action in actionsToCheck) {
-        String functionName = NotificationAction.getCallbackNameFromAction(action);
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
-=======
-      for (NotificationAction action in actionsToCheck) {
-        String functionName =
-            NotificationAction.getCallbackNameFromAction(action);
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
         if (method.method == functionName) {
           return action.callback(payload);
         }
@@ -384,8 +267,6 @@ class AndroidFlutterLocalNotificationsPlugin
     }
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   Future<void> _handleActionMethods(
       MethodCall call, AndroidNotificationDetails notificationDetails) {
     var payload = call.arguments;
@@ -398,26 +279,6 @@ class AndroidFlutterLocalNotificationsPlugin
         return action.callback(payload);
       }
     }
-=======
-  Future<void> _handleActionMethods(MethodCall call, AndroidNotificationDetails notificationDetails){
-=======
-  Future<void> _handleActionMethods(
-      MethodCall call, AndroidNotificationDetails notificationDetails) {
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
-    var payload = call.arguments;
-    List<NotificationAction> actionsToCheck = []
-      ..addAll(notificationDetails.actions);
-    for (NotificationAction action in actionsToCheck) {
-      String functionName =
-          NotificationAction.getCallbackNameFromAction(action);
-      if (call.method == functionName) {
-        return action.callback(payload);
-      }
-<<<<<<< HEAD
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
-=======
-    }
->>>>>>> fixed the bug for on tap notification action by modifing the setting of method call handler on the method channel (flutter side), also added some TODOs
   }
 }
 
