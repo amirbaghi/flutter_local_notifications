@@ -62,11 +62,8 @@ public class NotificationAction {
     private void addActionsToIntent(Intent actionIntent) {
         System.out.println("addActionsToIntent");
         if (!isEmptyAction() && actionIntent != null) {
-            // actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
             actionIntent.putExtra(PAYLOAD_KEY, payload);
-            System.out.println(CALLBACK_KEY + callbackFunctionName);
-            System.out.println(PAYLOAD_KEY + payload);
         }
     }
 }
