@@ -28,7 +28,6 @@ class MethodChannelFlutterLocalNotificationsPlugin
 
   @override
   Future<void> cancelAll() {
-    print(_channel);
     return _channel.invokeMethod('cancelAll');
   }
 
@@ -189,7 +188,6 @@ class AndroidFlutterLocalNotificationsPlugin
       var payload = method.arguments;
       // The if statement for the on select method (or on tap notification action, the invocation at the beginning of initialize method should be removed as it's unnecessary)
       if (method.method == "selectNotification") {
-        print("flutter side, invoking ");
         return _onSelectNotification(payload);
       }
       List<NotificationAction> actionsToCheck = []
@@ -203,7 +201,6 @@ class AndroidFlutterLocalNotificationsPlugin
         }
       }
     });
-    print(_channel);
     return _channel.invokeMethod(
       'show',
       <String, dynamic>{
