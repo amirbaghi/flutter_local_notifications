@@ -27,6 +27,11 @@ flutter:
         pluginClass: FlutterLocalNotificationsPlugin
       ios:
         pluginClass: FlutterLocalNotificationsPlugin
+  # plugin2:
+  #   platforms:
+  #     android:
+  #       package: com.dexterous.flutterlocalnotifications.background_service_management
+  #       pluginClass: BackgroundManagerPlugin
 
 
 environment:
