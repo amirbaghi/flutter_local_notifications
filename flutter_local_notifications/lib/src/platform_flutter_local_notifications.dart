@@ -28,6 +28,7 @@ class MethodChannelFlutterLocalNotificationsPlugin
 
   @override
   Future<void> cancelAll() {
+    print(_channel);
     return _channel.invokeMethod('cancelAll');
   }
 
@@ -201,6 +202,7 @@ class AndroidFlutterLocalNotificationsPlugin
         }
       }
     });
+    print(_channel);
     return _channel.invokeMethod(
       'show',
       <String, dynamic>{
