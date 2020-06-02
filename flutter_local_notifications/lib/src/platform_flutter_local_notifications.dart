@@ -28,7 +28,6 @@ class MethodChannelFlutterLocalNotificationsPlugin
 
   @override
   Future<void> cancelAll() {
-    print(_channel);
     return _channel.invokeMethod('cancelAll');
   }
 
@@ -280,7 +279,6 @@ class AndroidFlutterLocalNotificationsPlugin
 =======
 >>>>>>> fixed the bug for the on tap notification action's content intent being handled twice
       if (method.method == "selectNotification") {
-        print("flutter side, invoking ");
         return _onSelectNotification(payload);
       }
       List<NotificationAction> actionsToCheck = []
@@ -299,7 +297,6 @@ class AndroidFlutterLocalNotificationsPlugin
         }
       }
     });
-    print(_channel);
     return _channel.invokeMethod(
       'show',
       <String, dynamic>{
