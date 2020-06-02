@@ -9,6 +9,7 @@ import com.dexterous.flutterlocalnotifications.services.LocalNotificationsServic
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
 import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin;
 =======
@@ -31,7 +32,10 @@ public class NotificationAction {
 =======
 =======
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerPlugin;
+=======
+>>>>>>> Integrated the BackgroundManagementPlugin into FlutterLocalNotificationsPlugin and deleted it itself, now headless dart code is executed in the background and working for Android, cleaned up the modules a bit by removing prints and commented out sections, also modified the AndroidManifest.xml and main.dart of example appropriately
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
+import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin;
 
 >>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
 
@@ -140,8 +144,12 @@ public class NotificationAction {
         Intent actionIntent = new Intent(context, BackgroundManagerBroadcastReceiver.class);
 >>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
         addActionsToIntent(actionIntent);
+<<<<<<< HEAD
         return PendingIntent.getService(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
+=======
+        return PendingIntent.getBroadcast(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+>>>>>>> Integrated the BackgroundManagementPlugin into FlutterLocalNotificationsPlugin and deleted it itself, now headless dart code is executed in the background and working for Android, cleaned up the modules a bit by removing prints and commented out sections, also modified the AndroidManifest.xml and main.dart of example appropriately
     }
 
     private PendingIntent getIntentForLaunchesApp(Context context) {
@@ -188,8 +196,12 @@ public class NotificationAction {
 >>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
 =======
             // actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
+<<<<<<< HEAD
             actionIntent.putExtra(BackgroundManagerPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
 >>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
+=======
+            actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
+>>>>>>> Integrated the BackgroundManagementPlugin into FlutterLocalNotificationsPlugin and deleted it itself, now headless dart code is executed in the background and working for Android, cleaned up the modules a bit by removing prints and commented out sections, also modified the AndroidManifest.xml and main.dart of example appropriately
             actionIntent.putExtra(PAYLOAD_KEY, payload);
             System.out.println(CALLBACK_KEY + callbackFunctionName);
             System.out.println(PAYLOAD_KEY + payload);
