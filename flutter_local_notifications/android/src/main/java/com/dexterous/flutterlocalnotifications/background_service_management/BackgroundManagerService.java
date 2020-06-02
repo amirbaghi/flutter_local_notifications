@@ -1,7 +1,9 @@
 package com.dexterous.flutterlocalnotifications.background_service_management;
 
-import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerPlugin;
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerService;
+
+
+import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin;
 // import com.dexterous.flutterlocalnotifications.background_service_management.IsolateHolderService;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +30,7 @@ import java.util.UUID;
 
 public class BackgroundManagerService extends JobIntentService implements MethodCallHandler {
 
-    private Deque<List<Long>> queue = new ArrayDeque<List<Long>>();
+    private Deque<List<Object>> queue = new ArrayDeque<List<Object>>();
     private Context mContext;
     private MethodChannel mBackgroundChannel;
 
@@ -51,8 +53,8 @@ public class BackgroundManagerService extends JobIntentService implements Method
             mContext = context;
             if (sBackgroundFlutterView == null) {
                 Long callbackHandle = context
-                        .getSharedPreferences(BackgroundManagerPlugin.SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE)
-                        .getLong(BackgroundManagerPlugin.CALLBACK_DISPATCHER_HANDLE_KEY, 0);
+                        .getSharedPreferences(FlutterLocalNotificationsPlugin.SHARED_PREFERENCES_KEY_BACKGROUND, Context.MODE_PRIVATE)
+                        .getLong(FlutterLocalNotificationsPlugin.CALLBACK_DISPATCHER_HANDLE_KEY, 0);
                 FlutterCallbackInformation callbackInfo = FlutterCallbackInformation
                         .lookupCallbackInformation(callbackHandle);
                 if (callbackHandle == null) {
@@ -62,7 +64,9 @@ public class BackgroundManagerService extends JobIntentService implements Method
                 Log.i(TAG, "Starting Background Service...");
                 sBackgroundFlutterView = new FlutterNativeView(context, true);
                 FlutterPluginRegistry resgistry = sBackgroundFlutterView.getPluginRegistry();
-                sPluginRegistrantCallback.registerWith(resgistry);
+
+                // Registering the Plugin after the engine has been started
+                FlutterLocalNotificationsPlugin.registerWith(resgistry.registrarFor("com.dexterous.flutterlocalnotifications.FlutterLocalNotifications"));                
 
                 FlutterRunArguments args = new FlutterRunArguments();
                 args.bundlePath = FlutterMain.findAppBundlePath(context);
@@ -70,12 +74,10 @@ public class BackgroundManagerService extends JobIntentService implements Method
                 args.libraryPath = callbackInfo.callbackLibraryPath;
 
                 sBackgroundFlutterView.runFromBundle(args);
-                //TODO: Add Isolate holder later
-                // IsolateHolderService.setBackgroundFlutterView(sBackgroundFlutterView);
             }
         }
         mBackgroundChannel = new MethodChannel(sBackgroundFlutterView,
-                "dexterous.com/flutter/background_manager_dart_channel");
+                "dexterous.com/flutter/background_dart_channel");
         mBackgroundChannel.setMethodCallHandler(this);
     }
 
@@ -90,14 +92,6 @@ public class BackgroundManagerService extends JobIntentService implements Method
                     sServiceStarted.set(true);
                 }
                 break;
-            // case "BackgroundManagerService.promoteToForeground":
-            //     mContext.startForegroundService(Intent(mContext, IsolateHolderService.class));
-            //     break;
-            // case "BackgroundManagerService.demoteToBackground":
-            //     Intent intent = Intent(mContext, IsolateHolderService.java);
-            //     intent.setAction(IsolateHolderService.ACTION_SHUTDOWN);
-            //     mContext.startForegroundService(intent);
-            //     break;
             default:
                 result.notImplemented();
                 break;
@@ -113,10 +107,12 @@ public class BackgroundManagerService extends JobIntentService implements Method
 
     @Override
     public void onHandleWork(Intent intent) {
-        Long callbackHandle = intent.getLongExtra(BackgroundManagerPlugin.CALLBACK_HANDLE_KEY, 0);
+        Long callbackHandle = intent.getLongExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, 0);
+        String payload = intent.getStringExtra("payload_key");
 
-        final ArrayList<Long> workList = new ArrayList<>();
+        final ArrayList<Object> workList = new ArrayList<>();
         workList.add(callbackHandle);
+        workList.add(payload);
 
         synchronized (sServiceStarted) {
             if (!sServiceStarted.get()) {
