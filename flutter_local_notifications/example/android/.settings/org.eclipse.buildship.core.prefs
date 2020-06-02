@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=deleted a couple of print statements
@@ -10,6 +11,11 @@
 <<<<<<<=HEAD
 >>>>>>>=deleted a couple of print statements
 >>>>>>> resolved conflicts
+=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=deleted a couple of print statements
+>>>>>>> 81a5b1e74e334f078b03441f2fc0ef55bf0087a8
 arguments=
 auto.sync=false
 build.scans.enabled=false
@@ -17,6 +23,7 @@ connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
 connection.project.dir=
 eclipse.preferences.version=1
 gradle.user.home=
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -58,6 +65,9 @@ java.home=/usr/lib/jvm/java-14-oracle
 =======
 java.home=/usr/lib/jvm/java-14-oracle
 >>>>>>> resolved conflicts
+=======
+java.home=/usr/lib/jvm/java-14-oracle
+>>>>>>> 81a5b1e74e334f078b03441f2fc0ef55bf0087a8
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true

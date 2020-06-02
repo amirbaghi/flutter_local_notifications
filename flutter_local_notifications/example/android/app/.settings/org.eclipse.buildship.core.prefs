@@ -1,13 +1,19 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> added org.eclipse.buildship.core.prefs
+=======
+>>>>>>> 81a5b1e74e334f078b03441f2fc0ef55bf0087a8
 arguments=
 auto.sync=false
 build.scans.enabled=false
 connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
 connection.project.dir=
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81a5b1e74e334f078b03441f2fc0ef55bf0087a8
 eclipse.preferences.version=1
 gradle.user.home=
 java.home=/usr/lib/jvm/java-14-oracle
@@ -16,6 +22,7 @@ offline.mode=false
 override.workspace.settings=true
 show.console.view=true
 show.executions.view=true
+<<<<<<< HEAD
 =======
 connection.project.dir=..
 eclipse.preferences.version=1
@@ -30,3 +37,5 @@ override.workspace.settings=true
 show.console.view=true
 show.executions.view=true
 >>>>>>> added org.eclipse.buildship.core.prefs
+=======
+>>>>>>> 81a5b1e74e334f078b03441f2fc0ef55bf0087a8
