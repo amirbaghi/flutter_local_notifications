@@ -41,6 +41,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
         </receiver>
+        <receiver android:name="com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver"
+                  android:enabled="true" android:exported="true"/>
+        <service android:name="com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerService"
+                 android:permission="android.permission.BIND_JOB_SERVICE" android:exported="true"/>
         <!-- Don't delete the meta-data below.
         This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

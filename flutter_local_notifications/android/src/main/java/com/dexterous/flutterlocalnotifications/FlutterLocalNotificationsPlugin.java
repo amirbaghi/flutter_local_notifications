@@ -101,6 +101,14 @@ public class FlutterLocalNotificationsPlugin
     private static final String NOTIFICATION_LAUNCHED_APP = "notificationLaunchedApp";
     private static final String INVALID_DRAWABLE_RESOURCE_ERROR_MESSAGE = "The resource %s could not be found. Please make sure it has been added as a drawable resource to your Android head project.";
     private static final String INVALID_RAW_RESOURCE_ERROR_MESSAGE = "The resource %s could not be found. Please make sure it has been added as a raw resource to your Android head project.";
+
+    // Background management variables
+    public static final String CALLBACK_DISPATCHER_HANDLE_KEY = "callback_dispatch_handler";
+    public static final String CALLBACK_HANDLE_KEY = "callback_handle";
+    public static final String SHARED_PREFERENCES_KEY_BACKGROUND = "plugin_cache";
+    private MethodChannel backgroundChannel;
+    //
+
     static String NOTIFICATION_ID = "notification_id";
     static String NOTIFICATION = "notification";
     static String NOTIFICATION_DETAILS = "notificationDetails";
@@ -115,8 +123,28 @@ public class FlutterLocalNotificationsPlugin
         FlutterLocalNotificationsPlugin plugin = new FlutterLocalNotificationsPlugin();
         plugin.setActivity(registrar.activity());
         registrar.addNewIntentListener(plugin);
+
+        // // Initialize method channel for the background code execution management
+        // final MethodChannel backgroundChannel = new
+        // MethodChannel(registrar.messenger(),
+        // "dexterous.com/flutter/background_manager_dart_channel");
+        // backgroundChannel.setMethodCallHandler(this);
+        // //
+
         plugin.onAttachedToEngine(registrar.context(), registrar.messenger());
     }
+
+    // Initialize background management service
+    private static void intializeServ(Context context, ArrayList<Object> args) {
+        Long callBackHandle = (Long) args.get(0);
+        context.getSharedPreferences(SHARED_PREFERENCES_KEY_BACKGROUND, Context.MODE_PRIVATE).edit()
+                .putLong(CALLBACK_DISPATCHER_HANDLE_KEY, callBackHandle).apply();
+    }
+
+    // private static void registerCallback(Context context, Result result, Boolean
+    // cache, Long arg){
+    // Long callbackHandle = arg;
+    // }
 
     static void rescheduleNotifications(Context context) {
         ArrayList<NotificationDetails> scheduledNotifications = loadScheduledNotifications(context);
@@ -775,8 +803,16 @@ public class FlutterLocalNotificationsPlugin
 
     private void onAttachedToEngine(Context context, BinaryMessenger binaryMessenger) {
         this.applicationContext = context;
+        System.out.println("onAttachedToEngine");
         this.channel = new MethodChannel(binaryMessenger, METHOD_CHANNEL);
         this.channel.setMethodCallHandler(this);
+
+        // Initialize method channel for the background code execution management
+        this.backgroundChannel = new MethodChannel(binaryMessenger,
+                "dexterous.com/flutter/background_manager_dart_channel");
+        this.backgroundChannel.setMethodCallHandler(this);
+        //
+
         LocalNotificationsService.setSharedChannel(this.channel);
     }
 
@@ -813,7 +849,13 @@ public class FlutterLocalNotificationsPlugin
 
     @Override
     public void onMethodCall(MethodCall call, Result result) {
+        System.out.println("enteredmethodcall");
         switch (call.method) {
+            case "BackgroundManager.initializeServ":
+                ArrayList<Object> args = (ArrayList<Object>) call.arguments;
+                intializeServ(applicationContext, args);
+                result.success(null);
+                break;
             case INITIALIZE_METHOD: {
                 initialize(call, result);
                 break;
@@ -823,6 +865,7 @@ public class FlutterLocalNotificationsPlugin
                 break;
             }
             case SHOW_METHOD: {
+                System.out.println("showing");
                 show(call, result);
                 break;
             }
@@ -840,6 +883,7 @@ public class FlutterLocalNotificationsPlugin
                 cancel(call, result);
                 break;
             case CANCEL_ALL_METHOD:
+                System.out.println("cancel All");
                 cancelAllNotifications(result);
                 break;
             case PENDING_NOTIFICATION_REQUESTS_METHOD:
@@ -942,11 +986,11 @@ public class FlutterLocalNotificationsPlugin
     /// valid
     private NotificationDetails extractNotificationDetails(Result result, Map<String, Object> arguments) {
         NotificationDetails notificationDetails = NotificationDetails.from(arguments);
-        if (hasInvalidIcon(result, notificationDetails.icon) ||
-                hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource) ||
-                hasInvalidBigPictureResources(result, notificationDetails) ||
-                hasInvalidRawSoundResource(result, notificationDetails) ||
-                hasInvalidLedDetails(result, notificationDetails)) {
+        if (hasInvalidIcon(result, notificationDetails.icon)
+                || hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource)
+                || hasInvalidBigPictureResources(result, notificationDetails)
+                || hasInvalidRawSoundResource(result, notificationDetails)
+                || hasInvalidLedDetails(result, notificationDetails)) {
             return null;
         }
 
@@ -1035,15 +1079,17 @@ public class FlutterLocalNotificationsPlugin
         System.out.println("new intent in main activity");
         boolean res = sendNotificationPayloadMessage(intent);
         if (res && mainActivity != null) {
-            // Added FLAG to the set intent to prevent the same intent from being handled again in onNewIntent function (which was the case without the FLAG).
-            intent.putExtra("FLAG","doNothing");
+            // Added FLAG to the set intent to prevent the same intent from being handled
+            // again in onNewIntent function (which was the case without the FLAG).
+            intent.putExtra("FLAG", "doNothing");
             mainActivity.setIntent(intent);
         }
         return res;
     }
 
     private Boolean sendNotificationPayloadMessage(Intent intent) {
-        // The second check is for making sure that the intent being handled is not being processed for a second time. 
+        // The second check is for making sure that the intent being handled is not
+        // being processed for a second time.
         if (SELECT_NOTIFICATION.equals(intent.getAction()) && (intent.getStringExtra("FLAG") == null)) {
             System.out.println("java side, invoking");
             String payload = intent.getStringExtra(PAYLOAD);
