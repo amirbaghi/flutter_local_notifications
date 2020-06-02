@@ -1,16 +1,23 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=deleted pending intent NEXT
 =======
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=deleted pending intent NEXT
+>>>>>>> resolved conflicts
 arguments=
 auto.sync=false
 build.scans.enabled=false
 connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
-connection.project.dir=../example/android/app
+connection.project.dir=
 eclipse.preferences.version=1
 gradle.user.home=
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -35,6 +42,9 @@ java.home=/usr/lib/jvm/java-14-oracle
 java.home=/usr/lib/jvm/java-14-oracle
 >>>>>>> deleted pending intent NEXT
 >>>>>>> deleted pending intent NEXT
+=======
+java.home=/usr/lib/jvm/java-14-oracle
+>>>>>>> resolved conflicts
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true

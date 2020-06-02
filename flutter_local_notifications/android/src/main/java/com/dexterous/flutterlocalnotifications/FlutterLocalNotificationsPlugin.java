@@ -213,7 +213,6 @@ public class FlutterLocalNotificationsPlugin
         return notification;
     }
 
-
     private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings, Context context) {
         for (NotificationAction extraAction : settings.actions) {
             PendingIntent intent = extraAction.getIntent(context);
@@ -534,7 +533,6 @@ public class FlutterLocalNotificationsPlugin
         Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
         String className = launchIntent.getComponent().getClassName();
         try {
-            System.out.println(className);
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
