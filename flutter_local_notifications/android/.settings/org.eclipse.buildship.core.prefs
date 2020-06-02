@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=deleted pending intent NEXT
@@ -13,6 +14,11 @@
 >>>>>>> resolved conflicts
 =======
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=deleted pending intent NEXT
+>>>>>>> resolved conflicts
 arguments=
 auto.sync=false
 build.scans.enabled=false
@@ -36,6 +42,7 @@ connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 connection.project.dir=../example/android/app
 =======
 connection.project.dir=../example/android
@@ -120,11 +127,13 @@ connection.project.dir=
 =======
 connection.project.dir=../example/android/app
 >>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
+=======
+connection.project.dir=
+>>>>>>> resolved conflicts
 eclipse.preferences.version=1
 gradle.user.home=
-<<<<<<< HEAD
-<<<<<<< HEAD
 java.home=/usr/lib/jvm/java-14-oracle
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> deleted pending intent NEXT
 =======
@@ -138,6 +147,8 @@ java.home=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 java.home=/usr/lib/jvm/java-14-oracle
 >>>>>>> deleted pending intent NEXT
 >>>>>>> deleted pending intent NEXT
+=======
+>>>>>>> resolved conflicts
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true

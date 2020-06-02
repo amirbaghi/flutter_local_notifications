@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=deleted a couple of print statements
@@ -13,6 +14,11 @@
 >>>>>>> resolved conflicts
 =======
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
+=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=deleted a couple of print statements
+>>>>>>> resolved conflicts
 arguments=
 auto.sync=false
 build.scans.enabled=false
@@ -33,6 +39,7 @@ gradle.user.home=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
 =======
@@ -94,6 +101,9 @@ java.home=/usr/lib/jvm/java-14-oracle
 java.home=/usr/lib/jvm/java-14-oracle
 >>>>>>> deleted a couple of print statements
 >>>>>>> deleted a couple of print statements
+=======
+java.home=/usr/lib/jvm/java-14-oracle
+>>>>>>> resolved conflicts
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true
