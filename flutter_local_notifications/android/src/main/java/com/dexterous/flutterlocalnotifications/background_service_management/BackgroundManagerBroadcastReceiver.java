@@ -14,7 +14,6 @@ public class BackgroundManagerBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent){
-        System.out.println("alkdjsflaksjdflksjd");
         FlutterMain.ensureInitializationComplete(context, null);
         BackgroundManagerService.enqueueWork(context, intent);
     }

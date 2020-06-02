@@ -794,7 +794,6 @@ public class FlutterLocalNotificationsPlugin
 
     private void onAttachedToEngine(Context context, BinaryMessenger binaryMessenger) {
         this.applicationContext = context;
-        System.out.println("onAttachedToEngine");
         this.channel = new MethodChannel(binaryMessenger, METHOD_CHANNEL);
         this.channel.setMethodCallHandler(this);
 
@@ -840,7 +839,6 @@ public class FlutterLocalNotificationsPlugin
 
     @Override
     public void onMethodCall(MethodCall call, Result result) {
-        System.out.println("enteredmethodcall");
         switch (call.method) {
             case "BackgroundManager.initializeServ":
                 ArrayList<Object> args = (ArrayList<Object>) call.arguments;
@@ -856,7 +854,6 @@ public class FlutterLocalNotificationsPlugin
                 break;
             }
             case SHOW_METHOD: {
-                System.out.println("showing");
                 show(call, result);
                 break;
             }
@@ -874,7 +871,6 @@ public class FlutterLocalNotificationsPlugin
                 cancel(call, result);
                 break;
             case CANCEL_ALL_METHOD:
-                System.out.println("cancel All");
                 cancelAllNotifications(result);
                 break;
             case PENDING_NOTIFICATION_REQUESTS_METHOD:
@@ -1067,7 +1063,6 @@ public class FlutterLocalNotificationsPlugin
 
     @Override
     public boolean onNewIntent(Intent intent) {
-        System.out.println("new intent in main activity");
         boolean res = sendNotificationPayloadMessage(intent);
         if (res && mainActivity != null) {
             // Added FLAG to the set intent to prevent the same intent from being handled
