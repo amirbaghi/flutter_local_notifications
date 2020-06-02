@@ -6,12 +6,17 @@ import android.content.Intent;
 
 import com.dexterous.flutterlocalnotifications.services.LocalNotificationsService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
 import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin;
 =======
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerPlugin;
 import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
 >>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
+=======
+import com.dexterous.flutterlocalnotifications.background_service_management.BackgroundManagerBroadcastReceiver;
+import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin;
+>>>>>>> Integrated the BackgroundManagementPlugin into FlutterLocalNotificationsPlugin and deleted it itself, now headless dart code is executed in the background and working for Android, cleaned up the modules a bit by removing prints and commented out sections, also modified the AndroidManifest.xml and main.dart of example appropriately
 
 
 
@@ -80,8 +85,12 @@ public class NotificationAction {
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
 =======
             // actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
+<<<<<<< HEAD
             actionIntent.putExtra(BackgroundManagerPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
 >>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
+=======
+            actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
+>>>>>>> Integrated the BackgroundManagementPlugin into FlutterLocalNotificationsPlugin and deleted it itself, now headless dart code is executed in the background and working for Android, cleaned up the modules a bit by removing prints and commented out sections, also modified the AndroidManifest.xml and main.dart of example appropriately
             actionIntent.putExtra(PAYLOAD_KEY, payload);
             System.out.println(CALLBACK_KEY + callbackFunctionName);
             System.out.println(PAYLOAD_KEY + payload);
