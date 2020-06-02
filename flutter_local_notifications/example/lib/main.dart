@@ -469,16 +469,16 @@ class _HomePageState extends State<HomePage> {
   void _configureCancelNotifs(){
     cancelNotifs.stream.listen((String payload) async {
       _cancelAllNotifications();
-      print(payload);
     });
   }
 
   
 
   Future<void> _showNotification() async {
+    // Note: The callback function has to be static or top-level
     var newAction = NotificationAction(
         actionText: "CANCEL",
-        callback: cancelAction,
+        callback: _cancelAllNotifications,
         payload: "cancel",
         launchesApp: false);
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
@@ -851,7 +851,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> _cancelAllNotifications() async {
+  static Future<void> _cancelAllNotifications() async {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 
