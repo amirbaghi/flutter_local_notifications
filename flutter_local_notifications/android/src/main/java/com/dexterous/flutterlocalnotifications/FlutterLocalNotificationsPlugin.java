@@ -202,46 +202,8 @@ public class FlutterLocalNotificationsPlugin
         setProgress(notificationDetails, builder);
         setCategory(notificationDetails, builder);
         setTimeoutAfter(notificationDetails, builder);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         addActions(builder, notificationDetails, context);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        return builder.build();
-=======
-=======
-
-
-        // TODO: clean up mock actions
-
-        Intent newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
-        PendingIntent viewIntent = PendingIntent.getActivity(context, 0, newIntent, 0);
-        builder.addAction(android.R.drawable.ic_menu_view,"VIEW", viewIntent);
-
-
-        Intent intent2 = new Intent(context, NotificationReceiver.class);
-        intent2.putExtra("notificationId", notificationDetails.id);
-        intent2.putExtra("action", "DISMISS");
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 0, intent2, 0);
-
-        builder.addAction(android.R.drawable.ic_delete, "DISMISS", pendingIntent2);
-
-=======
-        addActions(builder, notificationDetails, context);
->>>>>>> integrated notification action models and services for android, also modified the corresponding flutter client side, as well as implementing the needed methods
-
->>>>>>> added two mock action buttons for notifications, view and dismiss, also added NotificationReceiver class that can receive  the intents that are dedicated to actions, as well as declaring the receiver in the example's AndroidManifest.xml
-=======
-        Intent newIntent = new Intent(context, LocalNotificationsService.class);
-        PendingIntent newPIntent = PendingIntent.getService(context, 0, newIntent, 0);
-        builder.addAction(0, "NEXT", newPIntent);
-
->>>>>>> added actions for the example app plain notification, also fixed some bugs in the flutter and android side for parsing the actions data
-=======
->>>>>>> deleted pending intent NEXT
         Notification notification = builder.build();
         if (notificationDetails.additionalFlags != null && notificationDetails.additionalFlags.length > 0) {
             for (int additionalFlag : notificationDetails.additionalFlags) {
@@ -249,18 +211,6 @@ public class FlutterLocalNotificationsPlugin
             }
         }
         return notification;
->>>>>>> [flutter_local_notifications] add extra flags for Android notifications (#608)
-    }
-
-
-    private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings,
-                            Context context) {
-        for (NotificationAction extraAction : settings.actions) {
-            PendingIntent intent = extraAction.getIntent(context);
-            NotificationCompat.Action action = new NotificationCompat.Action
-                    .Builder(0, extraAction.actionText, intent).build();
-            builder.addAction(action);
-        }
     }
 
     private static void addActions(NotificationCompat.Builder builder, NotificationDetails settings, Context context) {
@@ -583,7 +533,6 @@ public class FlutterLocalNotificationsPlugin
         Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
         String className = launchIntent.getComponent().getClassName();
         try {
-            System.out.println(className);
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

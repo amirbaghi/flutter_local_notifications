@@ -45,12 +45,7 @@ public class NotificationAction {
     }
 
     private PendingIntent getIntentNotLaunchesApp(Context context) {
-<<<<<<< HEAD
-        System.out.println("Start of not launches app");
-        Intent actionIntent = new Intent(context, LocalNotificationsService.class);
-=======
         Intent actionIntent = new Intent(context, BackgroundManagerBroadcastReceiver.class);
->>>>>>> added support for background headless dart code execution, modified the logic of the plugin based on the new procedure for running flutter functions
         addActionsToIntent(actionIntent);
         return PendingIntent.getBroadcast(context, currentId++, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
@@ -67,11 +62,8 @@ public class NotificationAction {
     private void addActionsToIntent(Intent actionIntent) {
         System.out.println("addActionsToIntent");
         if (!isEmptyAction() && actionIntent != null) {
-            // actionIntent.putExtra(CALLBACK_KEY, callbackFunctionName);
             actionIntent.putExtra(FlutterLocalNotificationsPlugin.CALLBACK_HANDLE_KEY, callbackHandle);
             actionIntent.putExtra(PAYLOAD_KEY, payload);
-            System.out.println(CALLBACK_KEY + callbackFunctionName);
-            System.out.println(PAYLOAD_KEY + payload);
         }
     }
 }
